@@ -71,7 +71,7 @@ const Hero = () => {
       />
 
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4">
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 pt-30 sm:pt-24">
         {/* Logo/Brand Animation */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -84,11 +84,11 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <h1 className="text-7xl md:text-9xl font-black bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-black bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
               STREAM
             </h1>
             <motion.h1
-              className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-red-400 to-yellow-400 bg-clip-text text-transparent text-center"
+              className="text-5xl sm:text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-red-400 to-yellow-400 bg-clip-text text-transparent text-center"
               animate={{
                 backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
@@ -114,7 +114,7 @@ const Hero = () => {
           className="text-center mb-12"
         >
           <motion.p
-            className="text-xl md:text-2xl text-gray-300 font-light mb-4"
+            className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5 }}
@@ -122,7 +122,7 @@ const Hero = () => {
             Elite Gaming Tournaments & Live Streaming Excellence
           </motion.p>
           <motion.p
-            className="text-lg text-gray-400"
+            className="text-base sm:text-lg text-gray-400"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2 }}
