@@ -107,6 +107,7 @@ const UpcomingTournaments = () => {
   return (
     <section
       ref={ref}
+      id="tournaments"
       className="relative py-20 overflow-hidden bg-gradient-to-b from-black to-slate-900"
     >
       {/* Background Pattern */}
@@ -125,7 +126,7 @@ const UpcomingTournaments = () => {
           className="text-center mb-16"
         >
           <motion.div
-            className="flex items-center justify-center mb-6"
+            className="flex items-center justify-center flex-col sm:flex-row mb-6"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, ease: "easeOut" }}
@@ -133,7 +134,7 @@ const UpcomingTournaments = () => {
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
               <Trophy className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black">
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
                 UPCOMING TOURNAMENTS
               </span>
@@ -349,7 +350,7 @@ const UpcomingTournaments = () => {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 2.2 }}
           >
-            Don't see your favorite game? Contact us to organize custom
+            Don&apos;t see your favorite game? Contact us to organize custom
             tournaments!
           </motion.p>
 
