@@ -88,7 +88,7 @@ const Hero = () => {
               STREAM
             </h1>
             <motion.h1
-              className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-red-400 to-yellow-400 bg-clip-text text-transparent"
+              className="text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-red-400 to-yellow-400 bg-clip-text text-transparent text-center"
               animate={{
                 backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
