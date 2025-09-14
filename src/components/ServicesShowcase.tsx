@@ -6,12 +6,8 @@ import {
   Trophy,
   Users,
   Video,
-  Settings,
-  Zap,
   Target,
-  Award,
   Headphones,
-  Monitor,
   Gamepad2,
 } from "lucide-react";
 
@@ -77,6 +73,7 @@ const ServicesShowcase = () => {
   return (
     <section
       ref={ref}
+      id="services"
       className="relative py-20 overflow-hidden bg-gradient-to-b from-slate-900 to-black"
     >
       {/* Background Pattern */}
@@ -110,7 +107,7 @@ const ServicesShowcase = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             From organizing elite gaming tournaments to providing professional
-            live streaming support, we're your complete esports solution in
+            live streaming support, we&apos;re your complete esports solution in
             Nepal.
           </motion.p>
         </motion.div>
