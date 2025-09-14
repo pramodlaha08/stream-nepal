@@ -1,9 +1,17 @@
-export default function (){
-  return(
-    <>
-    <div>
-      <h1 className="text-3xl font-bold font-poppins text-center capitalize underline m-52 text-foreground">Welcome to streams nepal</h1>
+import Navigation from "../components/Navigation";
+import Hero from "../components/Hero";
+import ServicesShowcase from "../components/ServicesShowcase";
+import AnimatedBackground from "../components/AnimatedBackground";
+
+export default function HomePage() {
+  return (
+    <div className="relative">
+      <AnimatedBackground />
+      <Navigation />
+      <main className="relative z-10">
+        <Hero />
+        <ServicesShowcase />
+      </main>
     </div>
-    </>
-  )
+  );
 }
