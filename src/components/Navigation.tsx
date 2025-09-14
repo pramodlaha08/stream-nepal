@@ -63,18 +63,14 @@ const Navigation = () => {
                   <motion.a
                     key={item.name}
                     href={item.href}
-                    className="group relative px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-colors"
+                    className="group relative px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-colors overflow-hidden"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 0.5 }}
                   >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-600/20 rounded-xl opacity-0"
-                      whileHover={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <span className="relative z-10 flex items-center space-x-2">
                       <item.icon className="w-4 h-4" />
                       <span>{item.name}</span>
