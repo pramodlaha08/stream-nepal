@@ -1,6 +1,7 @@
 import Navigation from "../components/Navigation";
 import Hero from "../components/Hero";
 import ServicesShowcase from "../components/ServicesShowcase";
+import UpcomingTournaments from "../components/UpcomingTournaments";
 import AnimatedBackground from "../components/AnimatedBackground";
 
 export default function HomePage() {
@@ -11,6 +12,7 @@ export default function HomePage() {
       <main className="relative z-10">
         <Hero />
         <ServicesShowcase />
+        <UpcomingTournaments />
       </main>
     </div>
   );
