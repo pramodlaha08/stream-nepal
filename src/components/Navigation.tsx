@@ -21,7 +21,7 @@ const Navigation = () => {
     { name: "Tournaments", icon: Trophy, href: "#tournaments" },
     { name: "Games", icon: Gamepad2, href: "#games" },
     { name: "Streaming", icon: Headphones, href: "#streaming" },
-    { name: "About", icon: Info, href: "#about" },
+    { name: "Services", icon: Info, href: "#services" },
     { name: "Contact", icon: Phone, href: "#contact" },
   ];
 
