@@ -127,15 +127,15 @@ const ServicesShowcase = () => {
               whileHover={{ scale: 1.02, y: -10 }}
             >
               {/* Card Background with Gradient Border */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-200 opacity-0 group-hover:opacity-100" />
 
-              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full group-hover:border-white/20 transition-all duration-500">
+              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full group-hover:border-white/20 transition-all duration-200">
                 {/* Service Icon & Image */}
                 <div className="flex items-center justify-between mb-6">
                   <motion.div
                     className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center`}
                     whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.4 }}
                   >
                     <service.icon className="w-8 h-8 text-white" />
                   </motion.div>
@@ -237,7 +237,7 @@ const ServicesShowcase = () => {
                   <motion.div
                     className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center group-hover:from-cyan-500/30 group-hover:to-purple-600/30 transition-colors"
                     whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.4 }}
                   >
                     <achievement.icon className="w-8 h-8 text-cyan-400" />
                   </motion.div>
