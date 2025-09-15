@@ -72,6 +72,8 @@ const ContactUs = () => {
         "Brand Partnership",
         "Corporate Event",
         "Other Business Inquiry",
+        "Live Stream Support",
+        "Custom Event Request"
       ],
     },
   ];
