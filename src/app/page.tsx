@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import ServicesShowcase from "../components/ServicesShowcase";
 import UpcomingTournaments from "../components/UpcomingTournaments";
 import GamesSection from "../components/GamesSection";
+import LiveStreamingSection from "../components/LiveStreamingSection";
 import ContactUs from "../components/ContactUs";
 import AnimatedBackground from "../components/AnimatedBackground";
 
@@ -16,6 +17,7 @@ export default function HomePage() {
         <ServicesShowcase />
         <UpcomingTournaments />
         <GamesSection />
+        <LiveStreamingSection />
         <ContactUs />
       </main>
     </div>
