@@ -4,12 +4,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
   Play,
-  Users,
   Eye,
   ExternalLink,
-  Calendar,
   Clock,
-  Zap,
   Radio,
   Video,
   TrendingUp,
