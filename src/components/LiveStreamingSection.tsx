@@ -15,11 +15,13 @@ import {
   TrendingUp,
   Star,
   Sparkles,
+  X,
 } from "lucide-react";
 
 const LiveStreamingSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const liveStreams = [
     {
@@ -93,11 +95,62 @@ const LiveStreamingSection = () => {
           color: "from-blue-500 to-blue-600",
           icon: "📘",
         },
-    
       ],
       game: "Valorant",
       streamer: "StreamNepal Pro",
       isSpecial: true,
+    },
+  ];
+
+  // Platform data for subscription modal
+  const socialPlatforms = [
+    {
+      name: "YouTube",
+      url: "https://youtube.com/@streamnepal",
+      color: "from-red-500 to-red-600",
+      icon: "📺",
+      description: "Watch live tournaments & highlights",
+      followers: "12.5K",
+    },
+    {
+      name: "Facebook",
+      url: "https://facebook.com/streamnepal",
+      color: "from-blue-500 to-blue-600",
+      icon: "📘",
+      description: "Join our gaming community",
+      followers: "8.3K",
+    },
+    {
+      name: "Twitch",
+      url: "https://twitch.tv/streamnepal",
+      color: "from-purple-500 to-purple-600",
+      icon: "🎮",
+      description: "Interactive live streaming",
+      followers: "5.7K",
+    },
+    {
+      name: "TikTok",
+      url: "https://tiktok.com/@streamnepal",
+      color: "from-pink-500 to-pink-600",
+      icon: "🎵",
+      description: "Gaming highlights & clips",
+      followers: "15.2K",
+    },
+    {
+      name: "Instagram",
+      url: "https://instagram.com/streamnepal",
+      color: "from-purple-400 to-pink-500",
+      icon: "📸",
+      description: "Behind the scenes content",
+      followers: "9.8K",
+    },
+    {
+      name: "Discord",
+      url: "https://discord.gg/streamnepal",
+      color: "from-indigo-500 to-purple-600",
+      icon: "💬",
+      description: "Chat with gamers",
+      followers: "3.2K",
     },
   ];
 
@@ -502,6 +555,7 @@ const LiveStreamingSection = () => {
             className="group relative px-8 py-4 bg-gradient-to-r from-red-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => setIsModalOpen(true)}
           >
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
@@ -516,6 +570,167 @@ const LiveStreamingSection = () => {
           </motion.button>
         </motion.div>
       </div>
+
+      {/* Subscription Modal */}
+      {isModalOpen && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setIsModalOpen(false)}
+        >
+          {/* Modal Backdrop */}
+          <motion.div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          />
+
+          {/* Modal Content */}
+          <motion.div
+            className="relative w-full max-w-2xl max-h-[90vh] overflow-hidden"
+            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ type: "spring", duration: 0.6, ease: "easeOut" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Glassmorphism Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-gray-900/40 backdrop-blur-xl border border-white/20 rounded-3xl" />
+
+            {/* Glowing Border Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl" />
+
+            {/* Content Container */}
+            <div className="relative p-8">
+              {/* Close Button */}
+              <motion.button
+                className="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20 transition-colors"
+                onClick={() => setIsModalOpen(false)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <X className="w-5 h-5 text-white" />
+              </motion.button>
+
+              {/* Modal Header */}
+              <motion.div
+                className="text-center mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <motion.div
+                  className="w-16 h-16 bg-gradient-to-br from-red-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 relative"
+                  animate={{
+                    boxShadow: [
+                      "0 0 0 0 rgba(239, 68, 68, 0.4)",
+                      "0 0 0 20px rgba(239, 68, 68, 0)",
+                      "0 0 0 0 rgba(239, 68, 68, 0)",
+                    ],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Radio className="w-8 h-8 text-white" />
+                </motion.div>
+
+                <h2 className="text-3xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
+                  Follow StreamNepal
+                </h2>
+                <p className="text-gray-300 text-lg">
+                  Connect with us on all platforms for exclusive content!
+                </p>
+              </motion.div>
+
+              {/* Platforms Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-96 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                {socialPlatforms.map((platform, index) => (
+                  <motion.a
+                    key={platform.name}
+                    href={platform.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative p-4 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden"
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {/* Gradient Background */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-r ${platform.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                      whileHover={{ opacity: 0.2 }}
+                    />
+
+                    {/* Content */}
+                    <div className="relative z-10 flex items-center space-x-4">
+                      {/* Platform Icon */}
+                      <div
+                        className={`w-12 h-12 bg-gradient-to-br ${platform.color} rounded-xl flex items-center justify-center text-xl`}
+                      >
+                        {platform.icon}
+                      </div>
+
+                      {/* Platform Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <h3 className="text-white font-bold text-lg truncate">
+                            {platform.name}
+                          </h3>
+                          <div className="flex items-center space-x-1">
+                            <span className="text-xs text-gray-400 font-semibold">
+                              {platform.followers}
+                            </span>
+                            <ExternalLink className="w-3 h-3 text-gray-400 group-hover:text-white transition-colors" />
+                          </div>
+                        </div>
+                        <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors">
+                          {platform.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Hover Effect Line */}
+                    <motion.div
+                      className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${platform.color} rounded-full`}
+                      initial={{ width: "0%" }}
+                      whileHover={{ width: "100%" }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    />
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Modal Footer */}
+              <motion.div
+                className="text-center mt-8 pt-6 border-t border-white/10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+              >
+                <p className="text-gray-400 text-sm mb-4">
+                  🎮 Join 50K+ gamers in our community!
+                </p>
+                <motion.button
+                  className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 rounded-xl font-semibold text-white flex items-center gap-2 mx-auto"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    // Open all social links
+                    socialPlatforms.forEach((platform) => {
+                      window.open(platform.url, "_blank");
+                    });
+                  }}
+                >
+                  <Sparkles className="w-4 h-4" />
+                  Follow All Platforms
+                </motion.button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   );
 };
