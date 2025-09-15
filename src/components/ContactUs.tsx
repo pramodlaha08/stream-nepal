@@ -126,6 +126,7 @@ const ContactUs = () => {
   return (
     <section
       ref={ref}
+      id="contact"
       className="relative py-20 overflow-hidden bg-gradient-to-b from-black to-slate-900"
     >
       {/* Animated Star Field Background */}

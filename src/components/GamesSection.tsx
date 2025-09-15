@@ -185,6 +185,7 @@ const GamesSection = () => {
   return (
     <section
       ref={ref}
+      id="games"
       className="relative py-20 overflow-hidden bg-gradient-to-b from-slate-900 to-black"
     >
       {/* Background Pattern */}
