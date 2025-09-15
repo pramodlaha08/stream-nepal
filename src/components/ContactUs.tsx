@@ -10,12 +10,8 @@ import {
   User,
   Building2,
   Trophy,
-  Headphones,
-  Star,
   Sparkles,
   MessageSquare,
-  Users,
-  Handshake,
   Gamepad2,
   Crown,
 } from "lucide-react";
@@ -237,8 +233,8 @@ const ContactUs = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Ready to level up your gaming experience? Whether you're a player
-            seeking tournaments or a company looking for partnerships, we're
+            Ready to level up your gaming experience? Whether you&apos;re a player
+            seeking tournaments or a company looking for partnerships, we&apos;re
             here to make it happen!
           </motion.p>
 
@@ -622,7 +618,7 @@ const ContactUs = () => {
                 Message Sent Successfully!
               </h3>
               <p className="text-gray-300">
-                We'll get back to you within 24 hours. Game on! 🎮
+                We&apos;ll get back to you within 24 hours. Game on! 🎮
               </p>
             </div>
           </motion.div>
