@@ -181,8 +181,8 @@ const Hero = () => {
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
         >
           {[
-            { icon: Trophy, value: "500+", label: "Tournaments" },
-            { icon: Users, value: "10K+", label: "Gamers" },
+            { icon: Trophy, value: "6+", label: "Tournaments" },
+            { icon: Users, value: "1.5K+", label: "Gamers" },
             { icon: Zap, value: "24/7", label: "Support" },
             { icon: Star, value: "4.9★", label: "Rating" },
           ].map((stat, index) => (

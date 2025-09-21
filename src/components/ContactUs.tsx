@@ -252,19 +252,19 @@ const ContactUs = () => {
               {
                 icon: Mail,
                 title: "Email",
-                info: "hello@streamnepal.com",
+                info: "streamnepal001@gmail.com",
                 gradient: "from-cyan-500 to-blue-600",
               },
               {
                 icon: Phone,
                 title: "Phone",
-                info: "+977 98XXXXXXXX",
+                info: "+977 9764885251",
                 gradient: "from-purple-500 to-pink-600",
               },
               {
                 icon: MapPin,
                 title: "Location",
-                info: "Kathmandu, Nepal",
+                info: "Biratnagar, Nepal",
                 gradient: "from-green-500 to-emerald-600",
               },
             ].map((contact, index) => (

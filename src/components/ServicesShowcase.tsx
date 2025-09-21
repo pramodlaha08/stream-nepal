@@ -64,9 +64,9 @@ const ServicesShowcase = () => {
   ];
 
   const achievements = [
-    { number: "500+", label: "Tournaments Organized", icon: Trophy },
-    { number: "10K+", label: "Active Gamers", icon: Users },
-    { number: "100+", label: "Successful Streams", icon: Video },
+    { number: "6+", label: "Tournaments Organized", icon: Trophy },
+    { number: "1.5K+", label: "Active Gamers", icon: Users },
+    { number: "10+", label: "Successful Streams", icon: Video },
     { number: "24/7", label: "Technical Support", icon: Headphones },
   ];
 

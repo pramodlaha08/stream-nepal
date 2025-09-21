@@ -25,6 +25,7 @@ import {
   Star,
   X,
   Clock,
+  MessageCircle,
 } from "lucide-react";
 
 const Footer = () => {
@@ -54,38 +55,38 @@ const Footer = () => {
     {
       name: "YouTube",
       icon: Youtube,
-      href: "https://youtube.com/@streamnepal",
+      href: "https://www.youtube.com/@MRSADY",
       color: "from-red-500 to-red-600",
       followers: "12.5K",
     },
     {
       name: "Facebook",
       icon: Facebook,
-      href: "https://facebook.com/streamnepal",
+      href: "https://facebook.com/mrsady",
       color: "from-blue-500 to-blue-600",
       followers: "8.3K",
     },
     {
-      name: "Twitter",
-      icon: Twitter,
-      href: "https://twitter.com/streamnepal",
-      color: "from-cyan-400 to-blue-500",
+      name: "Discord",
+      icon: MessageCircle,
+      href: "https://discord.gg/tzNm6t3jZa",
+      color: "from-indigo-500 to-purple-600",
       followers: "5.7K",
     },
-    {
-      name: "Instagram",
-      icon: Instagram,
-      href: "https://instagram.com/streamnepal",
-      color: "from-pink-500 to-purple-500",
-      followers: "9.8K",
-    },
+    // {
+    //   name: "Instagram",
+    //   icon: Instagram,
+    //   href: "https://instagram.com/streamnepal",
+    //   color: "from-pink-500 to-purple-500",
+    //   followers: "9.8K",
+    // },
   ];
 
   const stats = [
-    { label: "Active Players", value: "50K+", icon: Users },
-    { label: "Tournaments Hosted", value: "200+", icon: Trophy },
+    { label: "Active Players", value: "1.6K+", icon: Users },
+    { label: "Tournaments Hosted", value: "10+", icon: Trophy },
     { label: "Live Streams", value: "1K+", icon: Radio },
-    { label: "Community Members", value: "25K+", icon: Shield },
+    { label: "Community Members", value: "20+", icon: Shield },
   ];
 
   const scrollToTop = () => {
@@ -240,14 +241,14 @@ const Footer = () => {
                     whileHover={{ x: 5 }}
                   >
                     <Phone className="w-4 h-4 mr-3" />
-                    <span className="text-sm">+977-9876543210</span>
+                    <span className="text-sm">+977-9764885251</span>
                   </motion.div>
                   <motion.div
                     className="flex items-center text-gray-400 hover:text-cyan-400 transition-colors"
                     whileHover={{ x: 5 }}
                   >
                     <MapPin className="w-4 h-4 mr-3" />
-                    <span className="text-sm">Kathmandu, Nepal</span>
+                    <span className="text-sm">Biratnagar, Nepal</span>
                   </motion.div>
                 </div>
               </motion.div>
@@ -437,7 +438,11 @@ const Footer = () => {
                 </div>
                 <span className="mt-1 sm:mt-0 sm:ml-1">
                   Designed and Managed By{" "}
-                  <a href="https://pramodlaha.com.np" target="_blank" className="text-cyan-400 font-semibold">
+                  <a
+                    href="https://pramodlaha.com.np"
+                    target="_blank"
+                    className="text-cyan-400 font-semibold"
+                  >
                     Pramod Laha
                   </a>
                 </span>

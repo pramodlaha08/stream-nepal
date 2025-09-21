@@ -295,10 +295,10 @@ const GamesSection = () => {
           <div className="bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl border border-white/10 p-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { icon: Gamepad2, number: "50+", label: "Games Supported" },
+                { icon: Gamepad2, number: "10+", label: "Games Supported" },
                 {
                   icon: Trophy,
-                  number: "1M+",
+                  number: "50k+",
                   label: "Prize Pool Distributed",
                 },
                 { icon: Star, number: "4.9", label: "Average Rating" },
