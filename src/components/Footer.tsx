@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Mail,
   Phone,
@@ -23,11 +23,14 @@ import {
   Radio,
   Shield,
   Star,
+  X,
+  Clock,
 } from "lucide-react";
 
 const Footer = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [isLiveModalOpen, setIsLiveModalOpen] = useState(false);
 
   const quickLinks = [
     { name: "Home", href: "#hero" },
@@ -390,18 +393,19 @@ const Footer = () => {
                   <p className="text-gray-400 text-sm mb-4">
                     Get notified about upcoming tournaments and live streams!
                   </p>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
                     <input
                       type="email"
                       placeholder="Your email"
-                      className="flex-1 bg-black/50 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors text-sm"
+                      className="flex-1 bg-black/50 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors text-sm min-w-0"
                     />
                     <motion.button
-                      className="bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg px-4 py-2 text-white"
+                      className="bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg px-4 py-2 text-white flex items-center justify-center gap-2 sm:flex-shrink-0"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Send className="w-4 h-4" />
+                      <span className="sm:hidden">Subscribe</span>
                     </motion.button>
                   </div>
                 </motion.div>
@@ -479,7 +483,7 @@ const Footer = () => {
         </motion.div>
       </div>
 
-      {/* Floating Action Elements */}
+      {/* Floating Action Elements - Desktop */}
       <div className="absolute top-8 right-8 hidden lg:block">
         <motion.div
           className="flex flex-col gap-4"
@@ -520,6 +524,179 @@ const Footer = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Mobile Floating Action Button */}
+      <div className="fixed bottom-6 right-4 z-50 lg:hidden">
+        <motion.button
+          onClick={() => setIsLiveModalOpen(true)}
+          className="relative bg-gradient-to-r from-red-500 to-purple-600 rounded-full w-14 h-14 flex items-center justify-center shadow-lg shadow-red-500/25"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          animate={{
+            boxShadow: [
+              "0 0 0 0 rgba(239, 68, 68, 0.4)",
+              "0 0 0 20px rgba(239, 68, 68, 0)",
+              "0 0 0 0 rgba(239, 68, 68, 0)",
+            ],
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <Radio className="w-6 h-6 text-white" />
+
+          {/* Live Badge */}
+          <motion.div
+            className="absolute -top-2 -right-2 bg-red-500 rounded-full w-6 h-6 flex items-center justify-center"
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <span className="text-white text-xs font-bold">3</span>
+          </motion.div>
+        </motion.button>
+      </div>
+
+      {/* Mobile Live Status Modal */}
+      {isLiveModalOpen && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-end justify-center p-4 lg:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setIsLiveModalOpen(false)}
+        >
+          {/* Modal Backdrop */}
+          <motion.div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          />
+
+          {/* Modal Content */}
+          <motion.div
+            className="relative w-full max-w-sm"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ type: "spring", duration: 0.6 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Glassmorphism Background */}
+            <div className="bg-gradient-to-br from-black/80 to-gray-900/80 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl">
+              {/* Close Button */}
+              <motion.button
+                className="absolute top-4 right-4 w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20 transition-colors"
+                onClick={() => setIsLiveModalOpen(false)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <X className="w-4 h-4 text-white" />
+              </motion.button>
+
+              {/* Header */}
+              <div className="text-center mb-6">
+                <motion.div
+                  className="w-12 h-12 bg-gradient-to-br from-red-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-3"
+                  animate={{
+                    boxShadow: [
+                      "0 0 0 0 rgba(239, 68, 68, 0.4)",
+                      "0 0 0 15px rgba(239, 68, 68, 0)",
+                      "0 0 0 0 rgba(239, 68, 68, 0)",
+                    ],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Radio className="w-6 h-6 text-white" />
+                </motion.div>
+                <h3 className="text-xl font-bold text-white mb-1">
+                  Live Status
+                </h3>
+                <p className="text-gray-400 text-sm">Current gaming activity</p>
+              </div>
+
+              {/* Live Streams */}
+              <div className="space-y-4">
+                {/* Live Now */}
+                <motion.div
+                  className="bg-gradient-to-r from-red-500/20 to-transparent border border-red-500/30 rounded-2xl p-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <motion.div
+                        className="w-3 h-3 bg-red-500 rounded-full"
+                        animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                      <span className="text-red-400 font-bold text-sm">
+                        LIVE NOW
+                      </span>
+                    </div>
+                    <span className="text-white font-semibold">3</span>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between text-gray-300">
+                      <span>PUBG Championship</span>
+                      <span className="text-cyan-400">15.2K viewers</span>
+                    </div>
+                    <div className="flex justify-between text-gray-300">
+                      <span>Free Fire Tournament</span>
+                      <span className="text-cyan-400">8.7K viewers</span>
+                    </div>
+                    <div className="flex justify-between text-gray-300">
+                      <span>Community Stream</span>
+                      <span className="text-cyan-400">2.1K viewers</span>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Next Tournament */}
+                <motion.div
+                  className="bg-gradient-to-r from-cyan-500/20 to-transparent border border-cyan-500/30 rounded-2xl p-4"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <Clock className="w-4 h-4 text-cyan-400" />
+                    <span className="text-cyan-400 font-bold text-sm">
+                      NEXT TOURNAMENT
+                    </span>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-white text-2xl font-bold mb-1">
+                      2:45:30
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                      Valorant Pro League Finals
+                    </p>
+                    <p className="text-gray-500 text-xs mt-1">
+                      Expected: 25K+ viewers
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-2">
+                  <motion.button
+                    className="flex-1 bg-gradient-to-r from-red-500 to-red-600 rounded-xl py-3 px-4 text-white font-semibold text-sm"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Watch Live
+                  </motion.button>
+                  <motion.button
+                    className="flex-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl py-3 px-4 text-white font-semibold text-sm"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Set Reminder
+                  </motion.button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </footer>
   );
 };
