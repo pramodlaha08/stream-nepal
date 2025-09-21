@@ -219,6 +219,7 @@ const LiveStreamingSection = () => {
   return (
     <section
       ref={ref}
+      id="streaming"
       className="relative py-20 overflow-hidden bg-gradient-to-b from-slate-900 to-black"
     >
       {/* Background Effects */}
