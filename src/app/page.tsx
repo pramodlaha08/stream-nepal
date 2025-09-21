@@ -5,6 +5,7 @@ import UpcomingTournaments from "../components/UpcomingTournaments";
 import GamesSection from "../components/GamesSection";
 import LiveStreamingSection from "../components/LiveStreamingSection";
 import ContactUs from "../components/ContactUs";
+import Footer from "../components/Footer";
 import AnimatedBackground from "../components/AnimatedBackground";
 
 export default function HomePage() {
@@ -20,6 +21,7 @@ export default function HomePage() {
         <LiveStreamingSection />
         <ContactUs />
       </main>
+      <Footer />
     </div>
   );
 }
