@@ -46,8 +46,8 @@ const Footer = () => {
     { name: "Free Fire Championships", href: "#freefire" },
     { name: "Live Streaming Support", href: "#streaming" },
     { name: "Tournament Organization", href: "#tournaments" },
-    { name: "Gaming Community", href: "#community" },
-    { name: "Esports Coaching", href: "#coaching" },
+    // { name: "Gaming Community", href: "#community" },
+    // { name: "Esports Coaching", href: "#coaching" },
   ];
 
   const socialPlatforms = [
@@ -424,16 +424,23 @@ const Footer = () => {
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Copyright */}
-              <div className="flex items-center text-gray-400 text-sm">
-                <span>© 2025 StreamNepal. Made with</span>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="mx-1"
-                >
-                  <Heart className="w-4 h-4 text-red-500 fill-current" />
-                </motion.div>
-                <span>for the gaming community</span>
+              <div className="flex flex-col sm:flex-row items-center text-gray-400 text-sm text-center sm:text-left">
+                <div className="flex items-center">
+                  <span className="whitespace-nowrap">© 2025 StreamNepal.</span>
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="mx-1"
+                  >
+                    <Heart className="w-4 h-4 text-red-500 fill-current" />
+                  </motion.div>
+                </div>
+                <span className="mt-1 sm:mt-0 sm:ml-1">
+                  Designed and Managed By{" "}
+                  <a href="https://pramodlaha.com.np" target="_blank" className="text-cyan-400 font-semibold">
+                    Pramod Laha
+                  </a>
+                </span>
               </div>
 
               {/* Legal Links */}
