@@ -29,49 +29,236 @@ export default function TournamentDetails({
 
   return (
     <div className="space-y-8">
-      {/* Prize Pool Breakdown */}
-      <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-8 border border-slate-700/50 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-yellow-500/10 to-transparent rounded-full blur-3xl"></div>
+      {/* Prize Pool Breakdown - Gaming Edition */}
+      <div className="relative bg-black rounded-3xl p-2 border border-cyan-500/30 overflow-hidden">
+        {/* Animated Border Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl opacity-75 animate-pulse"></div>
 
-        <div className="relative">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-3 bg-yellow-500/20 rounded-xl">
-              <Trophy className="w-8 h-8 text-yellow-400" />
-            </div>
-            <h2 className="text-3xl font-bold text-white">
-              Prize Pool Distribution
-            </h2>
-          </div>
+        {/* Corner Blade Effects */}
+        <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-cyan-400/30 to-transparent transform -rotate-45 -translate-x-10 -translate-y-10"></div>
+        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-purple-400/30 to-transparent transform rotate-45 translate-x-10 -translate-y-10"></div>
+        <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-pink-400/30 to-transparent transform rotate-45 -translate-x-10 translate-y-10"></div>
+        <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-yellow-400/30 to-transparent transform -rotate-45 translate-x-10 translate-y-10"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {tournament.prizePool.breakdown.map((prize, index) => (
-              <div key={index} className="group relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-                <div className="relative bg-slate-800/80 p-6 rounded-2xl border border-slate-600/50 backdrop-blur-sm">
-                  <div className="text-center space-y-3">
-                    <div
-                      className={`text-2xl font-bold ${
-                        index === 0
-                          ? "text-yellow-400"
-                          : index === 1
-                          ? "text-gray-300"
-                          : index === 2
-                          ? "text-amber-600"
-                          : "text-slate-400"
-                      }`}
-                    >
-                      #{index + 1}
-                    </div>
-                    <div className="text-slate-300 font-medium">
-                      {prize.position}
-                    </div>
-                    <div className="text-xl font-bold text-white">
-                      {prize.amount}
-                    </div>
+        {/* Floating Particles */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-60"></div>
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-purple-400 rounded-full animate-pulse opacity-80"></div>
+        <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-pink-400 rounded-full animate-bounce opacity-70"></div>
+
+        <div className="relative bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-black/95 rounded-2xl p-8 backdrop-blur-sm border border-slate-700/30">
+          {/* Glowing Background Effects */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-cyan-500/5 via-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-yellow-500/5 via-orange-500/5 to-red-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+
+          <div className="relative z-10">
+            {/* Epic Header */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-4 mb-6">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-2xl blur animate-pulse"></div>
+                  <div className="relative p-4 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-cyan-400/50">
+                    <Trophy
+                      className="w-12 h-12 text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text"
+                      style={{
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="text-left">
+                  <h2 className="text-4xl md:text-5xl font-black text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text animate-pulse">
+                    PRIZE POOL
+                  </h2>
+                  <div className="text-2xl md:text-3xl font-bold text-yellow-400 animate-pulse">
+                    {tournament.prizePool.total} {tournament.prizePool.currency}
                   </div>
                 </div>
               </div>
-            ))}
+
+              {/* Epic Subtitle */}
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent flex-1"></div>
+                <span className="text-slate-400 font-medium tracking-wider uppercase text-sm">
+                  🏆 COMPETE FOR GLORY 🏆
+                </span>
+                <div className="h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent flex-1"></div>
+              </div>
+            </div>
+
+            {/* Prize Cards - Gaming Style */}
+            <div className="flex flex-wrap justify-center gap-8">
+              {tournament.prizePool.breakdown.map((prize, index) => {
+                const isFirst = index === 0;
+                const isSecond = index === 1;
+                const isThird = index === 2;
+
+                return (
+                  <div
+                    key={index}
+                    className={`group relative w-full sm:w-auto sm:min-w-[220px] sm:max-w-[280px] flex-shrink-0 transform transition-all duration-500 hover:scale-105 ${
+                      isFirst
+                        ? "hover:scale-110 sm:-translate-y-4"
+                        : isSecond || isThird
+                        ? "hover:scale-108 sm:-translate-y-2"
+                        : "hover:scale-105"
+                    }`}
+                  >
+                    {/* Animated Glow Ring */}
+                    <div
+                      className={`absolute -inset-2 rounded-3xl blur-lg opacity-60 group-hover:opacity-100 transition-all duration-500 animate-pulse ${
+                        isFirst
+                          ? "bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"
+                          : isSecond
+                          ? "bg-gradient-to-r from-gray-300 via-slate-400 to-gray-300"
+                          : isThird
+                          ? "bg-gradient-to-r from-amber-600 via-orange-700 to-amber-600"
+                          : "bg-gradient-to-r from-slate-500 via-slate-600 to-slate-500"
+                      }`}
+                    ></div>
+
+                    {/* Sharp Corner Blades */}
+                    <div className="absolute -top-3 -left-3 w-6 h-6 bg-gradient-to-br from-cyan-400 to-transparent transform rotate-45"></div>
+                    <div className="absolute -top-3 -right-3 w-6 h-6 bg-gradient-to-bl from-purple-400 to-transparent transform -rotate-45"></div>
+                    <div className="absolute -bottom-3 -left-3 w-6 h-6 bg-gradient-to-tr from-pink-400 to-transparent transform -rotate-45"></div>
+                    <div className="absolute -bottom-3 -right-3 w-6 h-6 bg-gradient-to-tl from-yellow-400 to-transparent transform rotate-45"></div>
+
+                    {/* Main Card */}
+                    <div
+                      className={`relative bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-black/90 rounded-2xl border-2 backdrop-blur-sm overflow-hidden ${
+                        isFirst
+                          ? "border-yellow-400/60 shadow-2xl shadow-yellow-400/25"
+                          : isSecond
+                          ? "border-gray-300/60 shadow-2xl shadow-gray-300/25"
+                          : isThird
+                          ? "border-amber-600/60 shadow-2xl shadow-amber-600/25"
+                          : "border-slate-600/60 shadow-xl shadow-slate-600/25"
+                      }`}
+                    >
+                      {/* Rank Badge */}
+                      <div
+                        className={`absolute -top-4 left-1/2 transform -translate-x-1/2 z-20 ${
+                          isFirst ? "w-16 h-16" : "w-14 h-14"
+                        }`}
+                      >
+                        <div
+                          className={`relative w-full h-full rounded-full border-4 flex items-center justify-center font-black text-xl shadow-2xl ${
+                            isFirst
+                              ? "bg-gradient-to-br from-yellow-300 to-yellow-600 border-yellow-200 text-yellow-900 animate-pulse"
+                              : isSecond
+                              ? "bg-gradient-to-br from-gray-200 to-gray-400 border-gray-100 text-gray-800"
+                              : isThird
+                              ? "bg-gradient-to-br from-amber-500 to-amber-700 border-amber-300 text-amber-100"
+                              : "bg-gradient-to-br from-slate-600 to-slate-800 border-slate-500 text-slate-200"
+                          }`}
+                        >
+                          #{index + 1}
+                        </div>
+                      </div>
+
+                      {/* Card Content */}
+                      <div className="pt-10 pb-8 px-6">
+                        <div className="text-center space-y-4">
+                          {/* Position Label */}
+                          <div
+                            className={`text-sm font-bold uppercase tracking-wider ${
+                              isFirst
+                                ? "text-yellow-400"
+                                : isSecond
+                                ? "text-gray-300"
+                                : isThird
+                                ? "text-amber-500"
+                                : "text-slate-400"
+                            }`}
+                          >
+                            {prize.position}
+                          </div>
+
+                          {/* Prize Amount - Epic Style */}
+                          <div
+                            className={`text-3xl font-black tracking-tight ${
+                              isFirst
+                                ? "text-transparent bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-400 bg-clip-text animate-pulse"
+                                : isSecond
+                                ? "text-transparent bg-gradient-to-r from-gray-200 via-gray-300 to-slate-300 bg-clip-text"
+                                : isThird
+                                ? "text-transparent bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 bg-clip-text"
+                                : "text-slate-300"
+                            }`}
+                            style={
+                              isFirst || isSecond || isThird
+                                ? {
+                                    WebkitBackgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
+                                  }
+                                : {}
+                            }
+                          >
+                            {prize.amount}
+                          </div>
+
+                          {/* Winner Crown for First Place */}
+                          {isFirst && (
+                            <div className="flex justify-center">
+                              <div className="text-yellow-400 text-2xl animate-bounce">
+                                👑
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Medal Icons */}
+                          {isSecond && (
+                            <div className="flex justify-center">
+                              <div className="text-gray-300 text-xl">🥈</div>
+                            </div>
+                          )}
+
+                          {isThird && (
+                            <div className="flex justify-center">
+                              <div className="text-amber-600 text-xl">🥉</div>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Animated Bottom Bar */}
+                        <div
+                          className={`mt-6 h-1 rounded-full overflow-hidden ${
+                            isFirst
+                              ? "bg-yellow-400/20"
+                              : isSecond
+                              ? "bg-gray-300/20"
+                              : isThird
+                              ? "bg-amber-600/20"
+                              : "bg-slate-600/20"
+                          }`}
+                        >
+                          <div
+                            className={`h-full w-full origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ${
+                              isFirst
+                                ? "bg-gradient-to-r from-yellow-400 to-orange-500"
+                                : isSecond
+                                ? "bg-gradient-to-r from-gray-300 to-slate-400"
+                                : isThird
+                                ? "bg-gradient-to-r from-amber-600 to-orange-700"
+                                : "bg-gradient-to-r from-slate-500 to-slate-600"
+                            }`}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Epic Call to Action */}
+            <div className="text-center mt-12">
+              <div className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl border border-cyan-400/30 backdrop-blur-sm">
+                <span className="text-slate-300 font-medium">
+                  ⚡ REGISTER NOW TO CLAIM YOUR SHARE ⚡
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
