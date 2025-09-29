@@ -57,13 +57,9 @@ export default function TournamentDetails({
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-2xl blur animate-pulse"></div>
                   <div className="relative p-4 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-cyan-400/50">
-                    <Trophy
-                      className="w-12 h-12 text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text"
-                      style={{
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                      }}
-                    />
+                    <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
+                      <Trophy className="w-8 h-8 text-white drop-shadow-lg" />
+                    </div>
                   </div>
                 </div>
                 <div className="text-left">
