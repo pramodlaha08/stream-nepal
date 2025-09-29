@@ -46,6 +46,12 @@ export interface Tournament {
     map: string;
     round: string;
   }[];
+  streamingPlatforms?: {
+    name: string;
+    url: string;
+    icon: string;
+    color: string;
+  }[];
 }
 
 export interface TournamentSlot {
@@ -175,6 +181,20 @@ export const pmwcTournament: Tournament = {
       time: "7:00 PM",
       map: "Miramar",
       round: "Finals",
+    },
+  ],
+  streamingPlatforms: [
+    {
+      name: "YouTube",
+      url: "https://youtube.com/@streamnepal",
+      icon: "youtube",
+      color: "from-red-500 to-red-600",
+    },
+    {
+      name: "Facebook",
+      url: "https://facebook.com/streamnepal",
+      icon: "facebook",
+      color: "from-blue-600 to-blue-700",
     },
   ],
 };
