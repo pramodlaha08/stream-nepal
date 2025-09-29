@@ -1,144 +1,5 @@
 import { Tournament, TournamentSlot } from "./types";
 
-// PMWC Tournament Data
-export const pmwcTournament: Tournament = {
-  id: "pmwc-2025",
-  name: "PUBG Mobile Warriors Cup",
-  shortName: "PMWC",
-  description:
-    "The ultimate PUBG Mobile tournament featuring the best teams from across Nepal. Battle for glory, massive prize pools, and the title of Nepal's PUBG Mobile Champions.",
-  image: "/tournaments/pmwc-banner.jpg",
-  logo: "/tournaments/pmwc-logo.png",
-  prizePool: {
-    total: "₹50,000",
-    currency: "NPR",
-    breakdown: [
-      { position: "1st Place", amount: "₹25,000" },
-      { position: "2nd Place", amount: "₹15,000" },
-      { position: "3rd Place", amount: "₹7,000" },
-      { position: "4th Place", amount: "₹3,000" },
-    ],
-  },
-  dates: {
-    registration: {
-      start: "2025-10-01",
-      end: "2025-10-25",
-    },
-    tournament: {
-      start: "2025-11-01",
-      end: "2025-11-03",
-    },
-  },
-  status: "registration",
-  format: "Squad Elimination",
-  maxTeams: 32,
-  registeredTeams: 18,
-  entryFee: {
-    amount: "500",
-    currency: "NPR",
-  },
-  game: "PUBG Mobile",
-  platform: ["Android", "iOS"],
-  rules: [
-    "Teams must have 4 players + 1 substitute",
-    "All players must be from Nepal",
-    "Minimum age requirement: 16 years",
-    "No cheating or hacking allowed",
-    "Teams must join Discord for communication",
-    "Entry fee must be paid before tournament starts",
-    "All matches will be streamed live",
-  ],
-  sponsors: [
-    {
-      name: "Stream Nepal",
-      logo: "/sponsors/stream-nepal.png",
-      website: "https://streamnepal.com",
-    },
-    {
-      name: "Gaming Hub",
-      logo: "/sponsors/gaming-hub.png",
-      website: "https://gaminghub.com",
-    },
-    {
-      name: "Tech Solutions",
-      logo: "/sponsors/tech-solutions.png",
-      website: "https://techsolutions.com",
-    },
-    {
-      name: "Esports Arena",
-      logo: "/sponsors/esports-arena.png",
-      website: "https://esportsarena.com",
-    },
-  ],
-  matchSchedule: [
-    {
-      matchNumber: 1,
-      matchName: "Opening Match",
-      time: "10:00 AM",
-      map: "Erangel",
-      round: "Round 1",
-    },
-    {
-      matchNumber: 2,
-      matchName: "Elimination Round",
-      time: "11:30 AM",
-      map: "Miramar",
-      round: "Round 1",
-    },
-    {
-      matchNumber: 3,
-      matchName: "Survival Match",
-      time: "1:00 PM",
-      map: "Sanhok",
-      round: "Round 2",
-    },
-    {
-      matchNumber: 4,
-      matchName: "Intensity Round",
-      time: "2:30 PM",
-      map: "Vikendi",
-      round: "Round 2",
-    },
-    {
-      matchNumber: 5,
-      matchName: "Quarter Finals",
-      time: "4:00 PM",
-      map: "Livik",
-      round: "Quarter Finals",
-    },
-    {
-      matchNumber: 6,
-      matchName: "Semi Finals",
-      time: "5:30 PM",
-      map: "Erangel",
-      round: "Semi Finals",
-    },
-    {
-      matchNumber: 7,
-      matchName: "Grand Finals",
-      time: "7:00 PM",
-      map: "Miramar",
-      round: "Finals",
-    },
-  ],
-  streamingPlatforms: [
-    {
-      name: "YouTube",
-      url: "https://youtube.com/@mrsady",
-      icon: "youtube",
-      color: "from-red-500 to-red-600",
-    },
-    {
-      name: "Facebook",
-      url: "https://www.facebook.com/MRSADDDY",
-      icon: "facebook",
-      color: "from-blue-600 to-blue-700",
-    },
-  ],
-  registrationUrl: "https://forms.gle/EgCCob2jQgX9rf2k9",
-  youtubeVideoId: "UGR_VQ5NTV4",
-};
-
 // PMWC Tournament Slots Data
 export const pmwcSlots: TournamentSlot[] = [
   {
@@ -302,4 +163,144 @@ export const pmwcSlots: TournamentSlot[] = [
     registrationDate: "2025-09-24",
   },
 ];
+
+// PMWC Tournament Data
+export const pmwcTournament: Tournament = {
+  id: "pmwc-2025",
+  name: "PUBG Mobile Warriors Cup",
+  shortName: "PMWC",
+  description:
+    "The ultimate PUBG Mobile tournament featuring the best teams from across Nepal. Battle for glory, massive prize pools, and the title of Nepal's PUBG Mobile Champions.",
+  image: "/tournaments/pmwc-banner.jpg",
+  logo: "/tournaments/pmwc-logo.png",
+  prizePool: {
+    total: "₹8,000",
+    currency: "NPR",
+    breakdown: [
+      { position: "Champion", amount: "₹5,000" },
+      { position: "Runner Up", amount: "₹2,000" },
+      { position: "MVP", amount: "₹1,000" },
+    ],
+  },
+  dates: {
+    registration: {
+      start: "2025-09-12",
+      end: "2025-09-26",
+    },
+    tournament: {
+      start: "2025-09-27",
+      end: "2025-09-27",
+    },
+  },
+  status: "registration",
+  format: "Squad Elimination",
+  maxTeams: 20,
+  registeredTeams: Object.keys(pmwcSlots).length,
+  entryFee: {
+    amount: "500",
+    currency: "NPR",
+  },
+  game: "PUBG Mobile",
+  platform: ["Android", "iOS"],
+  rules: [
+    "Teams must have 4 players + 1 substitute",
+    "All players must be from Nepal",
+    "3 players team tag must necessary",
+    "No cheating or hacking allowed",
+    "Teams must join Discord for communication",
+    "Entry fee must be paid before tournament starts",
+    "All matches will be streamed live",
+  ],
+  sponsors: [
+    {
+      name: "Stream Nepal",
+      logo: "/sponsors/stream-nepal.png",
+      website: "https://streamnepal.com",
+    },
+    {
+      name: "Gaming Hub",
+      logo: "/sponsors/gaming-hub.png",
+      website: "https://gaminghub.com",
+    },
+    {
+      name: "Tech Solutions",
+      logo: "/sponsors/tech-solutions.png",
+      website: "https://techsolutions.com",
+    },
+    {
+      name: "Esports Arena",
+      logo: "/sponsors/esports-arena.png",
+      website: "https://esportsarena.com",
+    },
+  ],
+  matchSchedule: [
+    {
+      matchNumber: 1,
+      matchName: "Opening Match",
+      time: "10:00 AM",
+      map: "Erangel",
+      round: "Round 1",
+    },
+    {
+      matchNumber: 2,
+      matchName: "Elimination Round",
+      time: "11:30 AM",
+      map: "Miramar",
+      round: "Round 1",
+    },
+    {
+      matchNumber: 3,
+      matchName: "Survival Match",
+      time: "1:00 PM",
+      map: "Sanhok",
+      round: "Round 2",
+    },
+    {
+      matchNumber: 4,
+      matchName: "Intensity Round",
+      time: "2:30 PM",
+      map: "Vikendi",
+      round: "Round 2",
+    },
+    {
+      matchNumber: 5,
+      matchName: "Quarter Finals",
+      time: "4:00 PM",
+      map: "Livik",
+      round: "Quarter Finals",
+    },
+    {
+      matchNumber: 6,
+      matchName: "Semi Finals",
+      time: "5:30 PM",
+      map: "Erangel",
+      round: "Semi Finals",
+    },
+    {
+      matchNumber: 7,
+      matchName: "Grand Finals",
+      time: "7:00 PM",
+      map: "Miramar",
+      round: "Finals",
+    },
+  ],
+  streamingPlatforms: [
+    {
+      name: "YouTube",
+      url: "https://youtube.com/@mrsady",
+      icon: "youtube",
+      color: "from-red-500 to-red-600",
+    },
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/MRSADDDY",
+      icon: "facebook",
+      color: "from-blue-600 to-blue-700",
+    },
+  ],
+  registrationUrl: "https://forms.gle/EgCCob2jQgX9rf2k9",
+  youtubeVideoId: "UGR_VQ5NTV4",
+};
+
+
 
