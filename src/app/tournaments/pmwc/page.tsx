@@ -1,7 +1,12 @@
-import { pmwcTournament, pmwcSlots } from "@/data/tournaments";
+import {
+  pmwcTournament,
+  pmwcSlots,
+  isTournamentStreamed,
+} from "@/data/tournaments";
 import TournamentHeader from "@/components/TournamentHeader";
 import TournamentDetails from "@/components/TournamentDetails";
 import TournamentSlots from "@/components/TournamentSlots";
+import CallToAction from "@/components/CallToAction";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
@@ -49,28 +54,12 @@ export default function PMWCPage() {
             </section>
 
             {/* Call to Action Section */}
-            <section className="text-center py-8 md:py-16">
-              <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl md:rounded-3xl p-8 md:p-12 border border-slate-700/50 relative overflow-hidden mx-4 md:mx-0">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-pink-500/5"></div>
-                <div className="relative space-y-4 md:space-y-6">
-                  <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    Ready to Compete?
-                  </h2>
-                  <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto px-4">
-                    Join the most exciting PUBG Mobile tournament in Nepal.
-                    Register your team now and compete for the ultimate prize.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-4 md:pt-6">
-                    <button className="px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 hover:from-cyan-400 hover:via-purple-500 hover:to-pink-400 text-white font-bold text-base md:text-lg rounded-xl md:rounded-2xl transition-all duration-300 shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/40 transform hover:-translate-y-2 hover:scale-105">
-                      Register Now
-                    </button>
-                    <button className="px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 text-white font-bold text-base md:text-lg rounded-xl md:rounded-2xl transition-all duration-300 shadow-lg shadow-slate-500/25 hover:shadow-slate-500/40 transform hover:-translate-y-1">
-                      Learn More
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <CallToAction
+              isStreamed={isTournamentStreamed(pmwcTournament)}
+              registrationUrl={pmwcTournament.registrationUrl}
+              youtubeVideoId={pmwcTournament.youtubeVideoId}
+              tournamentName={pmwcTournament.name}
+            />
           </div>
         </div>
       </div>

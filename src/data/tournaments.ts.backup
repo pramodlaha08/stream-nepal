@@ -1,4 +1,11 @@
-export interface Tournament {
+export   prizePool: {
+    total: string;
+    currency: string;
+    breakdown: {
+      position: string;
+      amount: string;
+    }[];
+  };t {
   id: string;
   name: string;
   shortName: string;
@@ -7,8 +14,22 @@ export interface Tournament {
   logo: string;
   prizePool: {
     total: string;
-    currency: string;
-    breakdown: {
+    currency: st  streamingPlatforms: [
+    {
+      name: "YouTube",
+      url: "https://youtube.com/@streamnepal",
+      icon: "youtube",
+      color: "from-red-500 to-red-600",
+    },
+    {
+      name: "Facebook",
+      url: "https://facebook.com/streamnepal",
+      icon: "facebook", 
+      color: "from-blue-600 to-blue-700",
+    },
+  ],
+  registrationUrl: "https://forms.google.com/pmwc-registration",
+  youtubeVideoId: "dQw4w9WgXcQ",kdown: {
       position: string;
       amount: string;
     }[];
@@ -68,20 +89,20 @@ export interface TournamentSlot {
 // PMWC Tournament Data
 export const pmwcTournament: Tournament = {
   id: "pmwc-2025",
-  name: "PUBG Mobile Warriors Cup",
+  name: "Pubg Mobile Warriors Cup",
   shortName: "PMWC",
   description:
-    "The ultimate PUBG Mobile tournament featuring the best teams from across Nepal. Battle for glory, massive prize pools, and the title of Nepal's PUBG Mobile Champions.",
+    "The ultimate PUBG Mobile tournament featuring the best teams from Nepal. Battle for glory and massive prize pools in this high-stakes competition.",
   image: "/tournaments/pmwc-banner.jpg",
   logo: "/tournaments/pmwc-logo.png",
   prizePool: {
-    total: "₹50,000",
+    total: "50,000",
     currency: "NPR",
     breakdown: [
-      { position: "1st Place", amount: "₹25,000" },
-      { position: "2nd Place", amount: "₹15,000" },
-      { position: "3rd Place", amount: "₹7,000" },
-      { position: "4th Place", amount: "₹3,000" },
+      { position: "1st Place", amount: "25,000 NPR" },
+      { position: "2nd Place", amount: "15,000 NPR" },
+      { position: "3rd Place", amount: "7,000 NPR" },
+      { position: "4th Place", amount: "3,000 NPR" },
     ],
   },
   dates: {
@@ -91,11 +112,11 @@ export const pmwcTournament: Tournament = {
     },
     tournament: {
       start: "2025-11-01",
-      end: "2025-9-03",
+      end: "2025-11-03",
     },
   },
   status: "registration",
-  format: "Squad Elimination",
+  format: "Squad (4 Players)",
   maxTeams: 32,
   registeredTeams: 18,
   entryFee: {
@@ -105,9 +126,8 @@ export const pmwcTournament: Tournament = {
   game: "PUBG Mobile",
   platform: ["Android", "iOS"],
   rules: [
-    "Teams must have 4 players + 1 substitute",
+    "Teams must have exactly 4 players",
     "All players must be from Nepal",
-    "Minimum age requirement: 16 years",
     "No cheating or hacking allowed",
     "Teams must join Discord for communication",
     "Entry fee must be paid before tournament starts",
@@ -200,8 +220,6 @@ export const pmwcTournament: Tournament = {
       color: "from-blue-600 to-blue-700",
     },
   ],
-  registrationUrl: "https://forms.google.com/pmwc-registration",
-  youtubeVideoId: "UGR_VQ5NTV4", // PMWC – PUBG Mobile Warrior Cup Live Tournament
 };
 
 // Tournament Slots Data
@@ -219,7 +237,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 2,
     slotName: "#2",
     logo: "/teams/team2.png",
-    teamName: "Beta Hunters",
+    teamName: "Cyber Knights",
     status: "confirmed",
     registrationDate: "2025-10-03",
   },
@@ -227,7 +245,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 3,
     slotName: "#3",
     logo: "/teams/team3.png",
-    teamName: "Cyber Ravens",
+    teamName: "Phoenix Squad",
     status: "confirmed",
     registrationDate: "2025-10-04",
   },
@@ -235,7 +253,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 4,
     slotName: "#4",
     logo: "/teams/team4.png",
-    teamName: "Digital Warriors",
+    teamName: "Storm Riders",
     status: "confirmed",
     registrationDate: "2025-10-05",
   },
@@ -243,7 +261,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 5,
     slotName: "#5",
     logo: "/teams/team5.png",
-    teamName: "Elite Squad",
+    teamName: "Venom Strike",
     status: "confirmed",
     registrationDate: "2025-10-06",
   },
@@ -251,7 +269,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 6,
     slotName: "#6",
     logo: "/teams/team6.png",
-    teamName: "Fire Dragons",
+    teamName: "Thunder Bolts",
     status: "confirmed",
     registrationDate: "2025-10-07",
   },
@@ -259,7 +277,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 7,
     slotName: "#7",
     logo: "/teams/team7.png",
-    teamName: "Ghost Riders",
+    teamName: "Shadow Force",
     status: "confirmed",
     registrationDate: "2025-10-08",
   },
@@ -267,7 +285,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 8,
     slotName: "#8",
     logo: "/teams/team8.png",
-    teamName: "Honor Guard",
+    teamName: "Ice Breakers",
     status: "confirmed",
     registrationDate: "2025-10-09",
   },
@@ -275,7 +293,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 9,
     slotName: "#9",
     logo: "/teams/team9.png",
-    teamName: "Iron Titans",
+    teamName: "Dark Legends",
     status: "confirmed",
     registrationDate: "2025-10-10",
   },
@@ -283,7 +301,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 10,
     slotName: "#10",
     logo: "/teams/team10.png",
-    teamName: "Jungle Kings",
+    teamName: "Fire Dragons",
     status: "confirmed",
     registrationDate: "2025-10-11",
   },
@@ -291,7 +309,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 11,
     slotName: "#11",
     logo: "/teams/team11.png",
-    teamName: "Knight Legends",
+    teamName: "Steel Panthers",
     status: "confirmed",
     registrationDate: "2025-10-12",
   },
@@ -299,7 +317,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 12,
     slotName: "#12",
     logo: "/teams/team12.png",
-    teamName: "Lightning Bolt",
+    teamName: "Neon Hunters",
     status: "confirmed",
     registrationDate: "2025-10-13",
   },
@@ -307,7 +325,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 13,
     slotName: "#13",
     logo: "/teams/team13.png",
-    teamName: "Mystic Phoenix",
+    teamName: "Atomic Blade",
     status: "confirmed",
     registrationDate: "2025-10-14",
   },
@@ -315,7 +333,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 14,
     slotName: "#14",
     logo: "/teams/team14.png",
-    teamName: "Nova Storm",
+    teamName: "Crimson Eagles",
     status: "confirmed",
     registrationDate: "2025-10-15",
   },
@@ -323,7 +341,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 15,
     slotName: "#15",
     logo: "/teams/team15.png",
-    teamName: "Omega Force",
+    teamName: "Frost Bite",
     status: "confirmed",
     registrationDate: "2025-10-16",
   },
@@ -331,7 +349,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 16,
     slotName: "#16",
     logo: "/teams/team16.png",
-    teamName: "Phoenix Rising",
+    teamName: "Quantum Rush",
     status: "confirmed",
     registrationDate: "2025-10-17",
   },
@@ -339,7 +357,7 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 17,
     slotName: "#17",
     logo: "/teams/team17.png",
-    teamName: "Quantum Leap",
+    teamName: "Apex Legends",
     status: "confirmed",
     registrationDate: "2025-10-18",
   },
@@ -347,115 +365,106 @@ export const pmwcSlots: TournamentSlot[] = [
     slotNumber: 18,
     slotName: "#18",
     logo: "/teams/team18.png",
-    teamName: "Rapid Strike",
+    teamName: "Void Strikers",
     status: "confirmed",
     registrationDate: "2025-10-19",
   },
   {
     slotNumber: 19,
     slotName: "#19",
-    logo: "/teams/team19.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 20,
     slotName: "#20",
-    logo: "/teams/team20.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 21,
     slotName: "#21",
-    logo: "/teams/team21.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 22,
     slotName: "#22",
-    logo: "/teams/team22.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 23,
     slotName: "#23",
-    logo: "/teams/team23.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 24,
     slotName: "#24",
-    logo: "/teams/team24.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 25,
     slotName: "#25",
-    logo: "/teams/team25.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 26,
     slotName: "#26",
-    logo: "/teams/team26.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 27,
     slotName: "#27",
-    logo: "/teams/team27.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 28,
     slotName: "#28",
-    logo: "/teams/team28.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 29,
     slotName: "#29",
-    logo: "/teams/team29.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 30,
     slotName: "#30",
-    logo: "/teams/team30.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 31,
     slotName: "#31",
-    logo: "/teams/team31.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
   {
     slotNumber: 32,
     slotName: "#32",
-    logo: "/teams/team32.png",
-    teamName: "Team Available",
+    logo: "/teams/default.png",
+    teamName: "TBD",
     status: "available",
   },
 ];
-
-// Helper function to check if tournament should show streaming content
-export const isTournamentStreamed = (tournament: Tournament): boolean => {
-  const currentDate = new Date();
-  const tournamentEndDate = new Date(tournament.dates.tournament.end);
-
-  // If current date is after tournament end date, show streaming content
-  return currentDate > tournamentEndDate;
-};
