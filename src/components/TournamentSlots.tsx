@@ -164,12 +164,36 @@ export default function TournamentSlots({
                   {/* Team Logo */}
                   <div className="col-span-2 flex items-center">
                     <div className="w-10 h-10 bg-slate-700 rounded-xl flex items-center justify-center overflow-hidden">
-                      {slot.status === "confirmed" ? (
+                      {slot.status === "confirmed" && slot.logo ? (
+                        <Image
+                          src={slot.logo}
+                          alt={`${slot.teamName} logo`}
+                          width={40}
+                          height={40}
+                          className="w-full h-full object-cover rounded-lg"
+                          onError={(e) => {
+                            // Fallback to initial letter if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = "none";
+                            const fallback =
+                              target.nextElementSibling as HTMLElement;
+                            if (fallback) fallback.style.display = "flex";
+                          }}
+                        />
+                      ) : slot.status === "confirmed" ? (
                         <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center text-white text-xs font-bold">
                           {slot.teamName.charAt(0)}
                         </div>
                       ) : (
                         <User className="w-5 h-5 text-slate-500" />
+                      )}
+                      {slot.status === "confirmed" && slot.logo && (
+                        <div
+                          className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center text-white text-xs font-bold"
+                          style={{ display: "none" }}
+                        >
+                          {slot.teamName.charAt(0)}
+                        </div>
                       )}
                     </div>
                   </div>
@@ -235,12 +259,36 @@ export default function TournamentSlots({
                         {slot.slotName}
                       </div>
                       <div className="w-8 h-8 bg-slate-700 rounded-lg flex items-center justify-center overflow-hidden">
-                        {slot.status === "confirmed" ? (
+                        {slot.status === "confirmed" && slot.logo ? (
+                          <Image
+                            src={slot.logo}
+                            alt={`${slot.teamName} logo`}
+                            width={32}
+                            height={32}
+                            className="w-full h-full object-cover rounded-md"
+                            onError={(e) => {
+                              // Fallback to initial letter if image fails to load
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = "none";
+                              const fallback =
+                                target.nextElementSibling as HTMLElement;
+                              if (fallback) fallback.style.display = "flex";
+                            }}
+                          />
+                        ) : slot.status === "confirmed" ? (
                           <div className="w-6 h-6 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-md flex items-center justify-center text-white text-xs font-bold">
                             {slot.teamName.charAt(0)}
                           </div>
                         ) : (
                           <User className="w-4 h-4 text-slate-500" />
+                        )}
+                        {slot.status === "confirmed" && slot.logo && (
+                          <div
+                            className="w-6 h-6 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-md flex items-center justify-center text-white text-xs font-bold"
+                            style={{ display: "none" }}
+                          >
+                            {slot.teamName.charAt(0)}
+                          </div>
                         )}
                       </div>
                     </div>
