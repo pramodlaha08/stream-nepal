@@ -2,6 +2,7 @@
 
 import { Tournament } from "@/data/tournaments";
 import { Trophy, Calendar, Shield, Zap, ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 interface TournamentDetailsProps {
   tournament: Tournament;
@@ -236,8 +237,37 @@ export default function TournamentDetails({
                   className="block p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center">
-                      <ExternalLink className="w-6 h-6 text-cyan-400" />
+                    <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center overflow-hidden">
+                      {sponsor.logo ? (
+                        <Image
+                          src={sponsor.logo}
+                          alt={sponsor.name}
+                          width={40}
+                          height={40}
+                          className="w-10 h-10 object-contain rounded-lg"
+                          onError={(
+                            e: React.SyntheticEvent<HTMLImageElement, Event>
+                          ) => {
+                            // Fallback to gradient background with initials if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = "none";
+                            const fallback =
+                              target.nextElementSibling as HTMLElement;
+                            if (fallback) fallback.style.display = "flex";
+                          }}
+                        />
+                      ) : null}
+                      {/* Fallback div with initials */}
+                      <div
+                        className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center text-white text-sm font-bold"
+                        style={{ display: sponsor.logo ? "none" : "flex" }}
+                      >
+                        {sponsor.name
+                          .split(" ")
+                          .map((word) => word[0])
+                          .join("")
+                          .slice(0, 2)}
+                      </div>
                     </div>
                     <div>
                       <div className="text-white font-semibold group-hover:text-cyan-400 transition-colors">
