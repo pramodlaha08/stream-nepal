@@ -1,6 +1,6 @@
 "use client";
 
-import { TournamentSlot } from "@/data/tournaments";
+import { TournamentSlot } from "@/data";
 import { Users, CheckCircle, Clock, User } from "lucide-react";
 import Image from "next/image";
 

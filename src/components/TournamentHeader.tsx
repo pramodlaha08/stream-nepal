@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Tournament } from "@/data/tournaments";
+import { Tournament } from "@/data";
 import {
   Calendar,
   Trophy,

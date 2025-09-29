@@ -1,69 +1,4 @@
-export interface Tournament {
-  id: string;
-  name: string;
-  shortName: string;
-  description: string;
-  image: string;
-  logo: string;
-  prizePool: {
-    total: string;
-    currency: string;
-    breakdown: {
-      position: string;
-      amount: string;
-    }[];
-  };
-  dates: {
-    registration: {
-      start: string;
-      end: string;
-    };
-    tournament: {
-      start: string;
-      end: string;
-    };
-  };
-  status: "registration" | "upcoming" | "live" | "finished";
-  format: string;
-  maxTeams: number;
-  registeredTeams: number;
-  entryFee: {
-    amount: string;
-    currency: string;
-  };
-  game: string;
-  platform: string[];
-  rules: string[];
-  sponsors: {
-    name: string;
-    logo: string;
-    website: string;
-  }[];
-  matchSchedule?: {
-    matchNumber: number;
-    matchName: string;
-    time: string;
-    map: string;
-    round: string;
-  }[];
-  streamingPlatforms?: {
-    name: string;
-    url: string;
-    icon: string;
-    color: string;
-  }[];
-  registrationUrl?: string;
-  youtubeVideoId?: string;
-}
-
-export interface TournamentSlot {
-  slotNumber: number;
-  slotName: string;
-  logo: string;
-  teamName: string;
-  status: "available" | "reserved" | "confirmed";
-  registrationDate?: string;
-}
+import { Tournament, TournamentSlot } from "./types";
 
 // PMWC Tournament Data
 export const pmwcTournament: Tournament = {
@@ -91,7 +26,7 @@ export const pmwcTournament: Tournament = {
     },
     tournament: {
       start: "2025-11-01",
-      end: "2025-9-03",
+      end: "2025-11-03",
     },
   },
   status: "registration",
@@ -201,12 +136,11 @@ export const pmwcTournament: Tournament = {
     },
   ],
   registrationUrl: "https://forms.google.com/pmwc-registration",
-  youtubeVideoId: "UGR_VQ5NTV4", // PMWC – PUBG Mobile Warrior Cup Live Tournament
+  youtubeVideoId: "UGR_VQ5NTV4",
 };
 
-// Tournament Slots Data
+// PMWC Tournament Slots Data
 export const pmwcSlots: TournamentSlot[] = [
-  // Tournament Slots
   {
     slotNumber: 1,
     slotName: "#1",
@@ -450,12 +384,3 @@ export const pmwcSlots: TournamentSlot[] = [
     status: "available",
   },
 ];
-
-// Helper function to check if tournament should show streaming content
-export const isTournamentStreamed = (tournament: Tournament): boolean => {
-  const currentDate = new Date();
-  const tournamentEndDate = new Date(tournament.dates.tournament.end);
-
-  // If current date is after tournament end date, show streaming content
-  return currentDate > tournamentEndDate;
-};

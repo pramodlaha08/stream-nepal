@@ -1,6 +1,6 @@
 "use client";
 
-import { Tournament } from "@/data/tournaments";
+import { Tournament } from "@/data";
 import { Calendar, Trophy, Users, GamepadIcon, ArrowRight } from "lucide-react";
 import Link from "next/link";
 

@@ -1,4 +1,4 @@
-import { Tournament, TournamentSlot } from "./tournaments";
+import { Tournament, TournamentSlot } from "./types";
 
 // Template for creating new tournaments
 export const createTournamentTemplate = (

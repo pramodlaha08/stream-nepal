@@ -1,4 +1,8 @@
-import { pmwcTournament, pmwcSlots, isTournamentStreamed } from "@/data";
+import {
+  ffwarzoneeTournament,
+  ffwarzoneSlots,
+  isTournamentStreamed,
+} from "@/data";
 import TournamentHeader from "@/components/TournamentHeader";
 import TournamentDetails from "@/components/TournamentDetails";
 import TournamentSlots from "@/components/TournamentSlots";
@@ -8,14 +12,14 @@ import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PMWC - Pubg Mobile Warriors Cup | Stream Nepal",
+  title: "FFWC - Free Fire Warzone Championship | Stream Nepal",
   description:
-    "Join the ultimate PUBG Mobile tournament featuring the best teams from Nepal. Battle for glory and massive prize pools.",
+    "Join Nepal's premier Free Fire tournament featuring intense battle royale action and massive prize pools.",
   keywords:
-    "PUBG Mobile, tournament, esports, gaming, Nepal, PMWC, warriors cup",
+    "Free Fire, tournament, esports, gaming, Nepal, FFWC, warzone, battle royale",
 };
 
-export default function PMWCPage() {
+export default function FFWarzonePage() {
   return (
     <>
       <Navigation />
@@ -23,9 +27,9 @@ export default function PMWCPage() {
         {/* Background Effects */}
         <div className="fixed inset-0 -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-repeat opacity-5"></div>
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-l from-purple-500/10 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-t from-pink-500/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-orange-500/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-l from-red-500/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-t from-yellow-500/10 to-transparent rounded-full blur-3xl"></div>
         </div>
 
         {/* Add proper spacing from navbar */}
@@ -33,28 +37,28 @@ export default function PMWCPage() {
           <div className="container mx-auto px-4 pb-8 space-y-16">
             {/* Tournament Header */}
             <section>
-              <TournamentHeader tournament={pmwcTournament} />
+              <TournamentHeader tournament={ffwarzoneeTournament} />
             </section>
 
             {/* Tournament Details */}
             <section>
-              <TournamentDetails tournament={pmwcTournament} />
+              <TournamentDetails tournament={ffwarzoneeTournament} />
             </section>
 
             {/* Tournament Slots */}
             <section>
               <TournamentSlots
-                slots={pmwcSlots}
-                maxTeams={pmwcTournament.maxTeams}
+                slots={ffwarzoneSlots}
+                maxTeams={ffwarzoneeTournament.maxTeams}
               />
             </section>
 
             {/* Call to Action Section */}
             <CallToAction
-              isStreamed={isTournamentStreamed(pmwcTournament)}
-              registrationUrl={pmwcTournament.registrationUrl}
-              youtubeVideoId={pmwcTournament.youtubeVideoId}
-              tournamentName={pmwcTournament.name}
+              isStreamed={isTournamentStreamed(ffwarzoneeTournament)}
+              registrationUrl={ffwarzoneeTournament.registrationUrl}
+              youtubeVideoId={ffwarzoneeTournament.youtubeVideoId}
+              tournamentName={ffwarzoneeTournament.name}
             />
           </div>
         </div>

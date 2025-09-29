@@ -1,6 +1,6 @@
 "use client";
 
-import { Tournament } from "@/data/tournaments";
+import { Tournament } from "@/data";
 import {
   Trophy,
   Calendar,

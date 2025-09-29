@@ -152,7 +152,7 @@ export default function CallToAction({
           <div className="pt-4 border-t border-slate-700/50">
             <p className="text-slate-400 text-sm">
               <strong className="text-white">Registration Deadline:</strong>{" "}
-              Don't miss out - slots are filling fast!
+              Don&apos;t miss out - slots are filling fast!
             </p>
           </div>
         </div>
