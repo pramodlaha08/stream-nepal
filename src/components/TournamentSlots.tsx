@@ -339,14 +339,14 @@ export default function TournamentSlots({
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-6 md:pt-8 px-4">
+      {/* <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-6 md:pt-8 px-4">
         <button className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm md:text-base rounded-xl md:rounded-2xl transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transform hover:-translate-y-1">
           Register Your Team
         </button>
         <button className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 text-white font-bold text-sm md:text-base rounded-xl md:rounded-2xl transition-all duration-300 shadow-lg shadow-slate-500/25 hover:shadow-slate-500/40 transform hover:-translate-y-1">
           Download Slot List
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
