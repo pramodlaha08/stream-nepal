@@ -171,8 +171,8 @@ export const pmwcTournament: Tournament = {
   shortName: "PMWC",
   description:
     "The ultimate PUBG Mobile tournament featuring the best teams from across Nepal. Battle for glory, massive prize pools, and the title of Nepal's PUBG Mobile Champions.",
-  image: "/tournaments/pmwc-banner.jpg",
-  logo: "/tournaments/pmwc-logo.png",
+  image: "/pmwc/sponsors/final.png",
+  logo: "/pmwc/sponsors/final.png",
   prizePool: {
     total: "₹8,000",
     currency: "NPR",
@@ -192,7 +192,7 @@ export const pmwcTournament: Tournament = {
       end: "2025-09-27",
     },
   },
-  status: "registration",
+  status: "finished",
   format: "Squad Elimination",
   maxTeams: 20,
   registeredTeams: Object.keys(pmwcSlots).length,
@@ -228,9 +228,9 @@ export const pmwcTournament: Tournament = {
       website: "http://crm.techfinity.com.np/",
     },
     {
-      name: "Alpha Sewa",
+      name: "Alpha Sewa International",
       logo: "/pmwc/sponsors/alphasewa.jpg",
-      website: "https://esportsarena.com",
+      website: "https://alphasewainternational.com/",
     },
   ],
   matchSchedule: [
