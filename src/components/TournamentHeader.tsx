@@ -66,8 +66,31 @@ export default function TournamentHeader({
             <div className="relative group">
               <div className="absolute -inset-1 md:-inset-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative bg-slate-800 p-4 md:p-6 rounded-2xl border border-slate-600/50">
-                <div className="w-20 h-20 md:w-32 md:h-32 bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl flex items-center justify-center">
-                  <GamepadIcon className="w-10 h-10 md:w-16 md:h-16 text-cyan-400" />
+                <div className="w-20 h-20 md:w-32 md:h-32 bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl flex items-center justify-center overflow-hidden">
+                  {tournament.logo ? (
+                    <Image
+                      src={tournament.logo}
+                      alt={`${tournament.name} logo`}
+                      width={128}
+                      height={128}
+                      className="w-full h-full object-contain rounded-xl"
+                      onError={(e) => {
+                        // Fallback to gamepad icon if image fails to load
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        const fallback =
+                          target.nextElementSibling as HTMLElement;
+                        if (fallback) fallback.style.display = "flex";
+                      }}
+                    />
+                  ) : null}
+                  {/* Fallback gamepad icon */}
+                  <div
+                    className="w-full h-full flex items-center justify-center"
+                    style={{ display: tournament.logo ? "none" : "flex" }}
+                  >
+                    <GamepadIcon className="w-10 h-10 md:w-16 md:h-16 text-cyan-400" />
+                  </div>
                 </div>
               </div>
             </div>
