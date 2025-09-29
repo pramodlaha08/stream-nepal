@@ -39,6 +39,13 @@ export interface Tournament {
     logo: string;
     website: string;
   }[];
+  matchSchedule?: {
+    matchNumber: number;
+    matchName: string;
+    time: string;
+    map: string;
+    round: string;
+  }[];
 }
 
 export interface TournamentSlot {
@@ -117,6 +124,57 @@ export const pmwcTournament: Tournament = {
       name: "Esports Arena",
       logo: "/sponsors/esports-arena.png",
       website: "https://esportsarena.com",
+    },
+  ],
+  matchSchedule: [
+    {
+      matchNumber: 1,
+      matchName: "Opening Match",
+      time: "10:00 AM",
+      map: "Erangel",
+      round: "Round 1",
+    },
+    {
+      matchNumber: 2,
+      matchName: "Elimination Round",
+      time: "11:30 AM",
+      map: "Miramar",
+      round: "Round 1",
+    },
+    {
+      matchNumber: 3,
+      matchName: "Survival Match",
+      time: "1:00 PM",
+      map: "Sanhok",
+      round: "Round 2",
+    },
+    {
+      matchNumber: 4,
+      matchName: "Intensity Round",
+      time: "2:30 PM",
+      map: "Vikendi",
+      round: "Round 2",
+    },
+    {
+      matchNumber: 5,
+      matchName: "Quarter Finals",
+      time: "4:00 PM",
+      map: "Livik",
+      round: "Quarter Finals",
+    },
+    {
+      matchNumber: 6,
+      matchName: "Semi Finals",
+      time: "5:30 PM",
+      map: "Erangel",
+      round: "Semi Finals",
+    },
+    {
+      matchNumber: 7,
+      matchName: "Grand Finals",
+      time: "7:00 PM",
+      map: "Miramar",
+      round: "Finals",
     },
   ],
 };
