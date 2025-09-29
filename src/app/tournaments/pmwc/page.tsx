@@ -27,48 +27,51 @@ export default function PMWCPage() {
           <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-t from-pink-500/10 to-transparent rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container mx-auto px-4 py-8 space-y-16">
-          {/* Tournament Header */}
-          <section>
-            <TournamentHeader tournament={pmwcTournament} />
-          </section>
+        {/* Add proper spacing from navbar */}
+        <div className="pt-24 md:pt-28 lg:pt-32">
+          <div className="container mx-auto px-4 pb-8 space-y-16">
+            {/* Tournament Header */}
+            <section>
+              <TournamentHeader tournament={pmwcTournament} />
+            </section>
 
-          {/* Tournament Details */}
-          <section>
-            <TournamentDetails tournament={pmwcTournament} />
-          </section>
+            {/* Tournament Details */}
+            <section>
+              <TournamentDetails tournament={pmwcTournament} />
+            </section>
 
-          {/* Tournament Slots */}
-          <section>
-            <TournamentSlots
-              slots={pmwcSlots}
-              maxTeams={pmwcTournament.maxTeams}
-            />
-          </section>
+            {/* Tournament Slots */}
+            <section>
+              <TournamentSlots
+                slots={pmwcSlots}
+                maxTeams={pmwcTournament.maxTeams}
+              />
+            </section>
 
-          {/* Call to Action Section */}
-          <section className="text-center py-16">
-            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-12 border border-slate-700/50 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-pink-500/5"></div>
-              <div className="relative space-y-6">
-                <h2 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Ready to Compete?
-                </h2>
-                <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-                  Join the most exciting PUBG Mobile tournament in Nepal.
-                  Register your team now and compete for the ultimate prize.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-                  <button className="px-10 py-4 bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 hover:from-cyan-400 hover:via-purple-500 hover:to-pink-400 text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/40 transform hover:-translate-y-2 hover:scale-105">
-                    Register Now
-                  </button>
-                  <button className="px-10 py-4 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-lg shadow-slate-500/25 hover:shadow-slate-500/40 transform hover:-translate-y-1">
-                    Learn More
-                  </button>
+            {/* Call to Action Section */}
+            <section className="text-center py-8 md:py-16">
+              <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl md:rounded-3xl p-8 md:p-12 border border-slate-700/50 relative overflow-hidden mx-4 md:mx-0">
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-pink-500/5"></div>
+                <div className="relative space-y-4 md:space-y-6">
+                  <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Ready to Compete?
+                  </h2>
+                  <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto px-4">
+                    Join the most exciting PUBG Mobile tournament in Nepal.
+                    Register your team now and compete for the ultimate prize.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-4 md:pt-6">
+                    <button className="px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 hover:from-cyan-400 hover:via-purple-500 hover:to-pink-400 text-white font-bold text-base md:text-lg rounded-xl md:rounded-2xl transition-all duration-300 shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/40 transform hover:-translate-y-2 hover:scale-105">
+                      Register Now
+                    </button>
+                    <button className="px-8 md:px-10 py-3 md:py-4 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 text-white font-bold text-base md:text-lg rounded-xl md:rounded-2xl transition-all duration-300 shadow-lg shadow-slate-500/25 hover:shadow-slate-500/40 transform hover:-translate-y-1">
+                      Learn More
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
       <Footer />
