@@ -32,13 +32,13 @@ const LiveStreamingSection = () => {
       platforms: [
         {
           name: "YouTube",
-          url: "https://youtube.com/streamnepal",
+          url: "https://www.youtube.com/@MRSADY",
           color: "from-red-500 to-red-600",
           icon: "📺",
         },
         {
           name: "Facebook",
-          url: "https://facebook.com/streamnepal",
+          url: "https://www.facebook.com/MRSADDDY",
           color: "from-blue-500 to-blue-600",
           icon: "📘",
         },
