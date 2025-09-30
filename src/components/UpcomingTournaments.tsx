@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 import {
   Trophy,
   Calendar,
@@ -13,6 +14,7 @@ import {
   Gamepad2,
   Zap,
   Award,
+  ArrowRight,
 } from "lucide-react";
 
 const UpcomingTournaments = () => {
@@ -22,17 +24,17 @@ const UpcomingTournaments = () => {
   const tournaments = [
     {
       id: 1,
-      title: "PUBG Mobile Championship",
+      title: "PUBG Mobile Warriors Cup",
       game: "PUBG Mobile",
-      date: "20/01/2025",
-      time: "18:00 NPT",
-      prize: "₹50,000",
-      seats: "Limited Seats",
+      date: "20/09/2025",
+      time: "11:00 NPT",
+      prize: "₹8,000",
+      seats: "Slots Filled",
       status: "open", // coming_soon, open, closed
       image:
         "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=250&fit=crop",
       gameIcon: Target,
-      registrationLink: "https://forms.google.com/dummy-pubg-tournament",
+      registrationLink: "/tournaments/pmwc",
     },
     {
       id: 2,
@@ -280,55 +282,106 @@ const UpcomingTournaments = () => {
                     </motion.div>
                   </div>
 
-                  {/* Register Button */}
-                  <motion.a
-                    href={tournament.registrationLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`group/btn relative w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-bold text-white overflow-hidden flex items-center justify-center space-x-2 transition-all duration-200 ${
-                      tournament.status === "closed"
-                        ? "opacity-50 cursor-not-allowed pointer-events-none"
-                        : "hover:from-pink-500 hover:to-purple-500"
-                    }`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: index * 0.2 + 1.5 }}
-                    whileHover={
-                      tournament.status !== "closed" ? { scale: 1.02 } : {}
-                    }
-                    whileTap={
-                      tournament.status !== "closed" ? { scale: 0.98 } : {}
-                    }
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "0%" }}
-                      transition={{
-                        type: "tween",
-                        ease: "easeOut",
-                        duration: 0.3,
-                      }}
-                    />
-                    <span className="relative z-10 flex items-center space-x-2">
-                      {tournament.status === "closed" ? (
-                        <>
+                  {/* Action Buttons - Native Links */}
+                  <div className="flex gap-3">
+                    {/* Learn More Button */}
+                    {tournament.registrationLink.startsWith("/") ? (
+                      <Link
+                        href={tournament.registrationLink}
+                        className="group relative flex-1 px-4 py-3 bg-black/80 backdrop-blur-sm border border-cyan-400/30 rounded-xl font-bold text-white overflow-hidden cursor-pointer hover:border-cyan-400/80 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        {/* Animated Background Lines */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse"></div>
+                          <div className="absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-pulse"></div>
+                          <div className="absolute top-0 left-0 w-0.5 h-full bg-gradient-to-b from-transparent via-pink-400 to-transparent animate-pulse"></div>
+                          <div className="absolute top-0 right-0 w-0.5 h-full bg-gradient-to-b from-transparent via-yellow-400 to-transparent animate-pulse"></div>
+                        </div>
+
+                        {/* Corner Blades */}
+                        <div className="absolute -top-1 -left-1 w-3 h-3 bg-gradient-to-br from-cyan-400/60 to-transparent transform rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-bl from-purple-400/60 to-transparent transform -rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                        <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-gradient-to-tr from-pink-400/60 to-transparent transform -rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-gradient-to-tl from-yellow-400/60 to-transparent transform rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+
+                        {/* Button Content */}
+                        <div className="relative z-10 flex items-center justify-center space-x-2">
+                          <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
+                          <span className="text-sm font-semibold tracking-wider group-hover:text-cyan-300 transition-colors">
+                            LEARN MORE
+                          </span>
+                          <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+                        </div>
+
+                        {/* Glow Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-pink-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </Link>
+                    ) : (
+                      <a
+                        href={tournament.registrationLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative flex-1 px-4 py-3 bg-black/80 backdrop-blur-sm border border-cyan-400/30 rounded-xl font-bold text-white overflow-hidden cursor-pointer hover:border-cyan-400/80 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        {/* Animated Background Lines */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse"></div>
+                          <div className="absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-pulse"></div>
+                          <div className="absolute top-0 left-0 w-0.5 h-full bg-gradient-to-b from-transparent via-pink-400 to-transparent animate-pulse"></div>
+                          <div className="absolute top-0 right-0 w-0.5 h-full bg-gradient-to-b from-transparent via-yellow-400 to-transparent animate-pulse"></div>
+                        </div>
+
+                        {/* Corner Blades */}
+                        <div className="absolute -top-1 -left-1 w-3 h-3 bg-gradient-to-br from-cyan-400/60 to-transparent transform rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-bl from-purple-400/60 to-transparent transform -rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                        <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-gradient-to-tr from-pink-400/60 to-transparent transform -rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-gradient-to-tl from-yellow-400/60 to-transparent transform rotate-45 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+
+                        {/* Button Content */}
+                        <div className="relative z-10 flex items-center justify-center space-x-2">
+                          <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
+                          <span className="text-sm font-semibold tracking-wider group-hover:text-cyan-300 transition-colors">
+                            LEARN MORE
+                          </span>
+                          <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+                        </div>
+
+                        {/* Glow Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-pink-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </a>
+                    )}
+
+                    {/* Register Button */}
+                    {tournament.status === "closed" ? (
+                      <div className="group relative flex-1 px-4 py-3 bg-gradient-to-r from-gray-500 to-gray-600 rounded-xl font-bold text-white overflow-hidden opacity-50 cursor-not-allowed">
+                        <div className="relative z-10 flex items-center justify-center space-x-2">
                           <Users className="w-4 h-4" />
-                          <span>Tournament Closed</span>
-                        </>
-                      ) : (
-                        <>
+                          <span className="text-sm">Closed</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <a
+                        href={tournament.registrationLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative flex-1 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-bold text-white overflow-hidden cursor-pointer hover:from-pink-500 hover:to-purple-500 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        {/* Sliding Background Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
+
+                        {/* Button Content */}
+                        <div className="relative z-10 flex items-center justify-center space-x-2">
                           <ExternalLink className="w-4 h-4" />
-                          <span>Register Now</span>
-                        </>
-                      )}
-                    </span>
-                  </motion.a>
+                          <span className="text-sm">Register</span>
+                        </div>
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 {/* Hover Overlay Effect */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-3xl opacity-0"
+                  className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-3xl opacity-0 pointer-events-none -z-10"
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 />
@@ -355,7 +408,7 @@ const UpcomingTournaments = () => {
           </motion.p>
 
           <motion.button
-            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden"
+            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
