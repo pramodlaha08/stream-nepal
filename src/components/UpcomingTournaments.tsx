@@ -15,13 +15,29 @@ import {
   Zap,
   Award,
   ArrowRight,
+  LucideIcon,
 } from "lucide-react";
+
+// Tournament Interface
+interface Tournament {
+  id: number;
+  title: string;
+  game: string;
+  date: string;
+  time: string;
+  prize: string;
+  seats: string;
+  status: "coming_soon" | "open" | "closed";
+  image: string;
+  gameIcon: LucideIcon;
+  registrationLink: string;
+}
 
 const UpcomingTournaments = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  const tournaments = [
+  const tournaments: Tournament[] = [
     {
       id: 1,
       title: "PUBG Mobile Warriors Cup",
@@ -30,7 +46,7 @@ const UpcomingTournaments = () => {
       time: "11:00 NPT",
       prize: "₹8,000",
       seats: "Slots Filled",
-      status: "open", // coming_soon, open, closed
+      status: "closed", // coming_soon, open, closed
       image:
         "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=250&fit=crop",
       gameIcon: Target,
@@ -80,7 +96,7 @@ const UpcomingTournaments = () => {
     },
   ];
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: Tournament["status"]): string => {
     switch (status) {
       case "coming_soon":
         return "from-yellow-500 to-orange-500";
@@ -93,7 +109,7 @@ const UpcomingTournaments = () => {
     }
   };
 
-  const getStatusText = (status: string) => {
+  const getStatusText = (status: Tournament["status"]): string => {
     switch (status) {
       case "coming_soon":
         return "Coming Soon";
@@ -156,7 +172,7 @@ const UpcomingTournaments = () => {
 
         {/* Tournaments Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {tournaments.map((tournament, index) => (
+          {tournaments.map((tournament: Tournament, index: number) => (
             <motion.div
               key={tournament.id}
               className="group relative"
