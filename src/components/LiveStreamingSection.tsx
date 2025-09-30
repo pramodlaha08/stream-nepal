@@ -23,16 +23,16 @@ const LiveStreamingSection = () => {
   const liveStreams = [
     {
       id: 1,
-      title: "PUBG Mobile Championship Finals",
+      title: "PUBG Mobile Warriors Cup",
       status: "live",
       thumbnail:
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&h=300&fit=crop",
+        "/pmwc/thumbnails/pmwc.png",
       viewers: "15.2K",
       duration: "2h 45m",
       platforms: [
         {
           name: "YouTube",
-          url: "https://www.youtube.com/@MRSADY",
+          url: "https://www.youtube.com/watch?v=UGR_VQ5NTV4&t=11131s",
           color: "from-red-500 to-red-600",
           icon: "📺",
         },
