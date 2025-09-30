@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import {
   Mail,
   Phone,
@@ -32,24 +33,76 @@ const Footer = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [isLiveModalOpen, setIsLiveModalOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Check if we're on the home page
+  const isHomePage = pathname === "/";
 
   const quickLinks = [
-    { name: "Home", href: "#hero" },
-    { name: "Services", href: "#services" },
-    { name: "Tournaments", href: "#tournaments" },
-    { name: "Games", href: "#games" },
-    { name: "Live Streams", href: "#streams" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "#", sectionId: null },
+    { name: "Services", href: "#services", sectionId: "services" },
+    { name: "Tournaments", href: "#tournaments", sectionId: "tournaments" },
+    { name: "Games", href: "#games", sectionId: "games" },
+    { name: "Live Streams", href: "#streaming", sectionId: "streaming" },
+    { name: "Contact", href: "#contact", sectionId: "contact" },
   ];
 
   const services = [
-    { name: "PUBG Mobile Tournaments", href: "#pubg" },
-    { name: "Free Fire Championships", href: "#freefire" },
-    { name: "Live Streaming Support", href: "#streaming" },
-    { name: "Tournament Organization", href: "#tournaments" },
-    // { name: "Gaming Community", href: "#community" },
-    // { name: "Esports Coaching", href: "#coaching" },
+    {
+      name: "PUBG Mobile Tournaments",
+      href: "#tournaments",
+      sectionId: "tournaments",
+    },
+    {
+      name: "Free Fire Championships",
+      href: "#tournaments",
+      sectionId: "tournaments",
+    },
+    {
+      name: "Live Streaming Support",
+      href: "#streaming",
+      sectionId: "streaming",
+    },
+    {
+      name: "Tournament Organization",
+      href: "#services",
+      sectionId: "services",
+    },
   ];
+
+  // Handle navigation based on current page
+  const handleNavClick = (item: {
+    name: string;
+    href: string;
+    sectionId: string | null;
+  }) => {
+    if (isHomePage) {
+      // If on home page, use smooth scroll to section
+      if (item.sectionId) {
+        const element = document.getElementById(item.sectionId);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      } else {
+        // Home link - scroll to top
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    } else {
+      // If on tournament page, navigate to home and then scroll
+      if (item.sectionId) {
+        router.push(`/#${item.sectionId}`);
+      } else {
+        router.push("/");
+      }
+    }
+  };
 
   const socialPlatforms = [
     {
@@ -276,14 +329,14 @@ const Footer = () => {
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
                     >
-                      <motion.a
-                        href={link.href}
-                        className="flex items-center text-gray-400 hover:text-cyan-400 transition-all duration-300 group"
+                      <motion.button
+                        onClick={() => handleNavClick(link)}
+                        className="flex items-center text-gray-400 hover:text-cyan-400 transition-all duration-300 group cursor-pointer w-full text-left"
                         whileHover={{ x: 5 }}
                       >
                         <ChevronRight className="w-4 h-4 mr-2 group-hover:text-cyan-400 transition-colors" />
                         <span>{link.name}</span>
-                      </motion.a>
+                      </motion.button>
                     </motion.li>
                   ))}
                 </ul>
@@ -312,14 +365,14 @@ const Footer = () => {
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
                     >
-                      <motion.a
-                        href={service.href}
-                        className="flex items-center text-gray-400 hover:text-purple-400 transition-all duration-300 group"
+                      <motion.button
+                        onClick={() => handleNavClick(service)}
+                        className="flex items-center text-gray-400 hover:text-purple-400 transition-all duration-300 group cursor-pointer w-full text-left"
                         whileHover={{ x: 5 }}
                       >
                         <ChevronRight className="w-4 h-4 mr-2 group-hover:text-purple-400 transition-colors" />
                         <span className="text-sm">{service.name}</span>
-                      </motion.a>
+                      </motion.button>
                     </motion.li>
                   ))}
                 </ul>
