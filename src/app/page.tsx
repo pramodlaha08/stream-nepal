@@ -2,7 +2,6 @@ import Navigation from "../components/Navigation";
 import Hero from "../components/Hero";
 import ServicesShowcase from "../components/ServicesShowcase";
 import UpcomingTournaments from "../components/UpcomingTournaments";
-import GamesSection from "../components/GamesSection";
 import LiveStreamingSection from "../components/LiveStreamingSection";
 import ContactUs from "../components/ContactUs";
 import Footer from "../components/Footer";
@@ -17,7 +16,6 @@ export default function HomePage() {
         <Hero />
         <ServicesShowcase />
         <UpcomingTournaments />
-        <GamesSection />
         <LiveStreamingSection />
         <ContactUs />
       </main>
