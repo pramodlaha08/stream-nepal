@@ -1,7 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 import {
   Menu,
   X,
@@ -15,15 +17,77 @@ import {
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Check if we're on the home page
+  const isHomePage = pathname === "/";
+
+  // Handle scrolling to section when navigating from other pages
+  useEffect(() => {
+    if (isHomePage && window.location.hash) {
+      const sectionId = window.location.hash.replace("#", "");
+      // Small delay to ensure page is loaded
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 100);
+    }
+  }, [isHomePage, pathname]);
 
   const navItems = [
-    { name: "Home", icon: Home, href: "#" },
-    { name: "Tournaments", icon: Trophy, href: "#tournaments" },
-    { name: "Games", icon: Gamepad2, href: "#games" },
-    { name: "Streaming", icon: Headphones, href: "#streaming" },
-    { name: "Services", icon: Info, href: "#services" },
-    { name: "Contact", icon: Phone, href: "#contact" },
+    { name: "Home", icon: Home, href: "#", sectionId: null },
+    {
+      name: "Tournaments",
+      icon: Trophy,
+      href: "#tournaments",
+      sectionId: "tournaments",
+    },
+    { name: "Games", icon: Gamepad2, href: "#games", sectionId: "games" },
+    {
+      name: "Streaming",
+      icon: Headphones,
+      href: "#streaming",
+      sectionId: "streaming",
+    },
+    { name: "Services", icon: Info, href: "#services", sectionId: "services" },
+    { name: "Contact", icon: Phone, href: "#contact", sectionId: "contact" },
   ];
+
+  // Handle navigation based on current page
+  const handleNavClick = (item: (typeof navItems)[0]) => {
+    if (isHomePage) {
+      // If on home page, use smooth scroll to section
+      if (item.sectionId) {
+        const element = document.getElementById(item.sectionId);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      } else {
+        // Home link - scroll to top
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    } else {
+      // If on tournament page, navigate to home and then scroll
+      if (item.sectionId) {
+        router.push(`/#${item.sectionId}`);
+      } else {
+        router.push("/");
+      }
+    }
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -46,8 +110,16 @@ const Navigation = () => {
             <div className="flex items-center justify-between">
               {/* Logo */}
               <motion.div
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 cursor-pointer"
                 whileHover={{ scale: 1.05 }}
+                onClick={() =>
+                  handleNavClick({
+                    name: "Home",
+                    icon: Home,
+                    href: "#",
+                    sectionId: null,
+                  })
+                }
               >
                 <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-lg flex items-center justify-center">
                   <Gamepad2 className="w-5 h-5 text-white" />
@@ -60,10 +132,10 @@ const Navigation = () => {
               {/* Desktop Menu */}
               <div className="hidden md:flex items-center space-x-1">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.button
                     key={item.name}
-                    href={item.href}
-                    className="group relative px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-colors overflow-hidden"
+                    onClick={() => handleNavClick(item)}
+                    className="group relative px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-colors overflow-hidden cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: -20 }}
@@ -75,7 +147,7 @@ const Navigation = () => {
                       <item.icon className="w-4 h-4" />
                       <span>{item.name}</span>
                     </span>
-                  </motion.a>
+                  </motion.button>
                 ))}
               </div>
 
@@ -137,11 +209,10 @@ const Navigation = () => {
             >
               <div className="flex flex-col pt-20 px-6">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.button
                     key={item.name}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className="group flex items-center space-x-4 px-4 py-4 rounded-xl text-gray-300 hover:text-white transition-colors"
+                    onClick={() => handleNavClick(item)}
+                    className="group flex items-center space-x-4 px-4 py-4 rounded-xl text-gray-300 hover:text-white transition-colors cursor-pointer w-full text-left"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 + 0.2 }}
@@ -156,7 +227,7 @@ const Navigation = () => {
                       <item.icon className="w-4 h-4" />
                     </div>
                     <span className="font-medium">{item.name}</span>
-                  </motion.a>
+                  </motion.button>
                 ))}
               </div>
             </motion.div>
