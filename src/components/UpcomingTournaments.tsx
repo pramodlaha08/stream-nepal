@@ -395,8 +395,11 @@ const UpcomingTournaments = () => {
             tournaments!
           </motion.p>
 
-          <motion.button
-            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden cursor-pointer"
+          <motion.a
+            href="https://wa.me/9779876543210?text=Hi%20Stream%20Nepal!%20I%20would%20like%20to%20request%20a%20custom%20tournament.%20Please%20provide%20me%20with%20more%20details%20about%20organizing%20a%20tournament%20for%20my%20preferred%20game."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden cursor-pointer inline-block"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -410,7 +413,7 @@ const UpcomingTournaments = () => {
               <Trophy className="w-5 h-5" />
               Request Custom Tournament
             </span>
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>
