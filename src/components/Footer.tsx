@@ -263,11 +263,15 @@ const Footer = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   <motion.div
-                    className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center mr-3"
+                    className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center mr-3 p-2"
                     animate={{ rotate: [0, 5, -5, 0] }}
                     transition={{ duration: 4, repeat: Infinity }}
                   >
-                    <Gamepad2 className="w-6 h-6 text-white" />
+                    <img
+                      src="/logo.png"
+                      alt="StreamNepal Logo"
+                      className="w-full h-full object-contain rounded-lg"
+                    />
                   </motion.div>
                   <h2 className="text-2xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                     StreamNepal

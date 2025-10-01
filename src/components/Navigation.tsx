@@ -121,8 +121,12 @@ const Navigation = () => {
                   })
                 }
               >
-                <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Gamepad2 className="w-5 h-5 text-white" />
+                <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-lg flex items-center justify-center p-1">
+                  <img
+                    src="/logo.png"
+                    alt="StreamNepal Logo"
+                    className="w-full h-full object-contain rounded-md"
+                  />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                   StreamNepal
