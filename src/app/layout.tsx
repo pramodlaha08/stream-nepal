@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     images: [
       {
         // fallback to logo.png; replace with /og-image.png (1200x630) for best results
-        url: "/android-chrome-512x512.png",
+        url: "/stream-nepal.png",
         width: 1200,
         height: 630,
         alt: "StreamNepal — esports tournaments in Nepal",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "StreamNepal — Nepal's Premier Esports Tournaments",
     description:
       "Join competitive PUBG Mobile and Free Fire tournaments in Nepal with live streams, prizes, and community events.",
-    images: ["/logo.png"],
+    images: ["/stream-nepal.png"],
     creator: "@StreamNepal",
   },
   robots: {

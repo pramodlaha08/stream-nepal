@@ -3,16 +3,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import {
-  Menu,
-  X,
-  Home,
-  Trophy,
-  Headphones,
-  Info,
-  Phone,
-  Gamepad2,
-} from "lucide-react";
+import Image from "next/image";
+import { Menu, X, Home, Trophy, Headphones, Info, Phone } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -119,11 +111,13 @@ const Navigation = () => {
                   })
                 }
               >
-                <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-lg flex items-center justify-center p-1">
-                  <img
+                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-lg flex items-center justify-center p-1">
+                  <Image
                     src="/logo.png"
                     alt="StreamNepal Logo"
-                    className="w-full h-full object-contain rounded-md"
+                    width={40}
+                    height={40}
+                    className="object-contain rounded-md"
                   />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">

@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 import {
   Mail,
   Phone,
@@ -259,14 +260,16 @@ const Footer = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   <motion.div
-                    className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center mr-3 p-2"
+                    className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center mr-3 p-2"
                     animate={{ rotate: [0, 5, -5, 0] }}
                     transition={{ duration: 4, repeat: Infinity }}
                   >
-                    <img
+                    <Image
                       src="/logo.png"
                       alt="StreamNepal Logo"
-                      className="w-full h-full object-contain rounded-lg"
+                      width={56}
+                      height={56}
+                      className="object-contain rounded-lg"
                     />
                   </motion.div>
                   <h2 className="text-2xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
