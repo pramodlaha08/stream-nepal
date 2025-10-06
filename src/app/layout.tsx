@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     images: [
       {
         // fallback to logo.png; replace with /og-image.png (1200x630) for best results
-        url: "/logo.png",
+        url: "/android-chrome-512x512.png",
         width: 1200,
         height: 630,
         alt: "StreamNepal — esports tournaments in Nepal",
