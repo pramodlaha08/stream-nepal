@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import {
   Mail,
@@ -10,14 +10,11 @@ import {
   Send,
   Facebook,
   Youtube,
-  Twitter,
-  Instagram,
   Gamepad2,
   Trophy,
   Users,
   Zap,
   ChevronRight,
-  ExternalLink,
   Heart,
   ArrowUp,
   Sparkles,
@@ -43,7 +40,6 @@ const Footer = () => {
     { name: "Home", href: "#", sectionId: null },
     { name: "Services", href: "#services", sectionId: "services" },
     { name: "Tournaments", href: "#tournaments", sectionId: "tournaments" },
-    { name: "Games", href: "#games", sectionId: "games" },
     { name: "Live Streams", href: "#streaming", sectionId: "streaming" },
     { name: "Contact", href: "#contact", sectionId: "contact" },
   ];

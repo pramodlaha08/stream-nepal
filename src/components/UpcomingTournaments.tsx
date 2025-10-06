@@ -11,9 +11,7 @@ import {
   Users,
   ExternalLink,
   Target,
-  Gamepad2,
   Zap,
-  Award,
   ArrowRight,
   LucideIcon,
 } from "lucide-react";

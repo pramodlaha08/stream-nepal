@@ -75,22 +75,34 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
   icons: {
     // Keep favicon in public root (or update paths if you use different files)
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
     other: [
-      { rel: "mask-icon", url: "/android-chrome-192x192.png", color: "#0ea5a4" },
+      {
+        rel: "mask-icon",
+        url: "/android-chrome-192x192.png",
+        color: "#0ea5a4",
+      },
     ],
   },
   alternates: {
     canonical: "https://streamnepal.stream",
   },
 };
+
+// Per Next.js guidance move visual viewport metadata (themeColor, colorScheme)
+// into a `generateViewport` export. This keeps the metadata API consistent and
+// avoids the 'Unsupported metadata themeColor' warning during build.
+export function generateViewport() {
+  return {
+    themeColor: [
+      { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+      { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    ],
+  };
+}
 
 export default function RootLayout({
   children,

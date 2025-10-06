@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import Link from "next/link";
 import {
   Menu,
   X,
@@ -48,7 +47,6 @@ const Navigation = () => {
       href: "#tournaments",
       sectionId: "tournaments",
     },
-    { name: "Games", icon: Gamepad2, href: "#games", sectionId: "games" },
     {
       name: "Streaming",
       icon: Headphones,
