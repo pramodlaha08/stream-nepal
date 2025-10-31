@@ -138,8 +138,11 @@ const Hero = () => {
           transition={{ delay: 2.5, duration: 0.8 }}
           className="flex flex-col sm:flex-row gap-6"
         >
-          <motion.button
-            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden"
+          <motion.a
+            href="https://wa.me/9779764885251?text=Hi%20Stream%20Nepal!%20I%20would%20like%20to%20know%20more%20about%20your%20tournaments%20and%20streaming%20services.%20Please%20provide%20me%20with%20more%20details."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden inline-block"
             whileHover={{ scale: 1.05, rotate: [-1, 1, -1, 0] }}
             whileTap={{ scale: 0.95 }}
           >
@@ -151,12 +154,19 @@ const Hero = () => {
             />
             <span className="relative z-10 flex items-center gap-2">
               <Play className="w-5 h-5" />
-              Join Tournament
+              WhatsApp
             </span>
-          </motion.button>
+          </motion.a>
 
           <motion.button
-            className="group px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-xl font-bold relative overflow-hidden"
+            onClick={() => {
+              const tournamentsSection = document.getElementById("tournaments");
+              tournamentsSection?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }}
+            className="group px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-xl font-bold relative overflow-hidden cursor-pointer"
             whileHover={{ scale: 1.05, borderColor: "#f59e0b" }}
             whileTap={{ scale: 0.95 }}
           >
