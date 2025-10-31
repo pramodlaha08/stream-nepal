@@ -38,6 +38,19 @@ const UpcomingTournaments = () => {
   const tournaments: Tournament[] = [
     {
       id: 1,
+      title: "PUBG Mobile Warriors Cup 2.0",
+      game: "PUBG Mobile",
+      date: "14/11/2025",
+      time: "9:00 NPT",
+      prize: "₹10,000",
+      seats: "Slots Available",
+      status: "open", // coming_soon, open, closed
+      image: "/pmwc_v2/poster.png",
+      gameIcon: Target,
+      registrationLink: "/tournaments/pmwc_v2",
+    },
+    {
+      id: 2,
       title: "PUBG Mobile Warriors Cup",
       game: "PUBG Mobile",
       date: "20/09/2025",
@@ -46,12 +59,12 @@ const UpcomingTournaments = () => {
       seats: "Slots Filled",
       status: "closed", // coming_soon, open, closed
       image:
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=250&fit=crop",
+        "/pmwc/thumbnails/pmwc.png",
       gameIcon: Target,
       registrationLink: "/tournaments/pmwc",
     },
     {
-      id: 2,
+      id: 3,
       title: "FreeFire Warzone",
       game: "Free Fire",
       date: "25/01/2025",
@@ -161,12 +174,12 @@ const UpcomingTournaments = () => {
               {/* Main Card */}
               <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden group-hover:border-white/20 transition-all duration-200">
                 {/* Tournament Image with Status Badge */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-56 sm:h-64 overflow-hidden bg-slate-800/50">
                   <motion.img
                     src={tournament.image}
                     alt={tournament.title}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
+                    className="w-full h-full object-contain"
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.4 }}
                   />
 
