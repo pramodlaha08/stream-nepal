@@ -43,8 +43,8 @@ export default function TournamentSlots({
           Tournament Slots
         </h2>
         <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto px-4">
-          Track team registrations and slot allocations. All teams will compete
-          in a single tournament bracket.
+          Track team registrations and slot allocations. Teams will be divided
+          into 2 groups.
         </p>
       </div>
 
@@ -74,7 +74,8 @@ export default function TournamentSlots({
             </span>
           </div>
           <div className="text-2xl md:text-3xl font-bold text-blue-400">
-            {slots.filter((slot) => slot.status === "available").length}
+            {maxTeams -
+              slots.filter((slot) => slot.status === "confirmed").length}
           </div>
         </div>
 
