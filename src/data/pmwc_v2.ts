@@ -56,7 +56,7 @@ export const pmwc_v2Tournament: Tournament = {
     {
       name: "Stream Nepal",
       logo: "/logo.png",
-      website: "https://streamnepal.com",
+      website: "https://streamnepal.stream",
     },
     {
       name: "Mr Sady",

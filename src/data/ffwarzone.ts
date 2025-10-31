@@ -53,7 +53,7 @@ export const ffwarzoneeTournament: Tournament = {
     {
       name: "Stream Nepal",
       logo: "/sponsors/stream-nepal.png",
-      website: "https://streamnepal.com",
+      website: "https://streamnepal.stream",
     },
     {
       name: "Mobile Legends",
