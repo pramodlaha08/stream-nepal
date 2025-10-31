@@ -17,9 +17,10 @@ export const pmwc_v2Tournament: Tournament = {
     total: "₹10,000",
     currency: "NPR",
     breakdown: [
-      { position: "Champion", amount: "₹6,000" },
-      { position: "Runner Up", amount: "₹2,500" },
-      { position: "MVP", amount: "₹1,500" },
+      { position: "Champion", amount: "₹4,000" },
+      { position: "Runner Up", amount: "₹3,000" },
+      { position: "2nd Runner Up", amount: "₹2,000" },
+      { position: "MVP", amount: "₹1,00" },
     ],
   },
   dates: {
