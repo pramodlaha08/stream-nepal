@@ -218,8 +218,22 @@ export default function TournamentHeader({
                     Tournament
                   </span>
                 </div>
-                <div className="text-sm md:text-lg font-bold text-purple-400">
-                  {formatDate(tournament.dates.tournament.start)}
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                    <div className="text-xs md:text-sm font-bold text-purple-400">
+                      {formatDate(tournament.dates.tournament.start)}
+                    </div>
+                  </div>
+                  {tournament.dates.tournament.start !==
+                    tournament.dates.tournament.end && (
+                    <div className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-pink-400"></div>
+                      <div className="text-xs md:text-sm font-bold text-purple-400">
+                        {formatDate(tournament.dates.tournament.end)}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
