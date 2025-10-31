@@ -28,7 +28,8 @@ interface Tournament {
   status: "coming_soon" | "open" | "closed";
   image: string;
   gameIcon: LucideIcon;
-  registrationLink: string;
+  registrationLink?: string;
+  learnMore?: string;
 }
 
 const UpcomingTournaments = () => {
@@ -47,7 +48,8 @@ const UpcomingTournaments = () => {
       status: "open", // coming_soon, open, closed
       image: "/pmwc_v2/poster.png",
       gameIcon: Target,
-      registrationLink: "/tournaments/pmwc_v2",
+      learnMore: "/tournaments/pmwc_v2",
+      registrationLink: "https://forms.gle/yrTuxG69LJMeHvp69",
     },
     {
       id: 2,
@@ -62,6 +64,7 @@ const UpcomingTournaments = () => {
         "/pmwc/thumbnails/pmwc.png",
       gameIcon: Target,
       registrationLink: "/tournaments/pmwc",
+      learnMore: "/tournaments/pmwc",
     },
     {
       id: 3,
@@ -76,6 +79,7 @@ const UpcomingTournaments = () => {
         "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=250&fit=crop",
       gameIcon: Zap,
       registrationLink: "/tournaments/ffwarzone",
+      learnMore: "/tournaments/ffwarzone",
     },
   ];
 
@@ -284,9 +288,9 @@ const UpcomingTournaments = () => {
                   {/* Action Buttons - Native Links */}
                   <div className="flex gap-3">
                     {/* Learn More Button */}
-                    {tournament.registrationLink.startsWith("/") ? (
+                    {tournament.learnMore?.startsWith("/") ? (
                       <Link
-                        href={tournament.registrationLink}
+                        href={tournament.learnMore}
                         className="group relative flex-1 px-4 py-3 bg-black/80 backdrop-blur-sm border border-cyan-400/30 rounded-xl font-bold text-white overflow-hidden cursor-pointer hover:border-cyan-400/80 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                       >
                         {/* Animated Background Lines */}
