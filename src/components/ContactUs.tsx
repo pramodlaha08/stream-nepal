@@ -73,7 +73,7 @@ const ContactUs = () => {
         "Corporate Event",
         "Other Business Inquiry",
         "Live Stream Support",
-        "Custom Event Request"
+        "Custom Event Request",
       ],
     },
   ];
@@ -236,9 +236,9 @@ const ContactUs = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Ready to level up your gaming experience? Whether you&apos;re a player
-            seeking tournaments or a company looking for partnerships, we&apos;re
-            here to make it happen!
+            Ready to level up your gaming experience? Whether you&apos;re a
+            player seeking tournaments or a company looking for partnerships,
+            we&apos;re here to make it happen!
           </motion.p>
 
           {/* Contact Info Cards */}
@@ -258,7 +258,7 @@ const ContactUs = () => {
               {
                 icon: Phone,
                 title: "Phone",
-                info: "+977 9764885251",
+                info: "+977 9820744881",
                 gradient: "from-purple-500 to-pink-600",
               },
               {

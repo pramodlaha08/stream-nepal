@@ -139,7 +139,7 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-6"
         >
           <motion.a
-            href="https://wa.me/9779764885251?text=Hi%20Stream%20Nepal!%20I%20would%20like%20to%20know%20more%20about%20your%20tournaments%20and%20streaming%20services.%20Please%20provide%20me%20with%20more%20details."
+            href="https://wa.me/9779820744881?text=Hi%20Stream%20Nepal!%20I%20would%20like%20to%20know%20more%20about%20your%20tournaments%20and%20streaming%20services.%20Please%20provide%20me%20with%20more%20details."
             target="_blank"
             rel="noopener noreferrer"
             className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden inline-block"

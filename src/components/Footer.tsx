@@ -297,7 +297,7 @@ const Footer = () => {
                     whileHover={{ x: 5 }}
                   >
                     <Phone className="w-4 h-4 mr-3" />
-                    <span className="text-sm">+977-9764885251</span>
+                    <span className="text-sm">+977-9820744881</span>
                   </motion.div>
                   <motion.div
                     className="flex items-center text-gray-400 hover:text-cyan-400 transition-colors"
