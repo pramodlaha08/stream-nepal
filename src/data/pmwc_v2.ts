@@ -20,7 +20,7 @@ export const pmwc_v2Tournament: Tournament = {
       { position: "Champion", amount: "₹4,000" },
       { position: "Runner Up", amount: "₹3,000" },
       { position: "2nd Runner Up", amount: "₹2,000" },
-      { position: "MVP", amount: "₹1,00" },
+      { position: "MVP", amount: "₹1,000" },
     ],
   },
   dates: {
@@ -129,7 +129,7 @@ export const pmwc_v2Tournament: Tournament = {
       color: "from-blue-600 to-blue-700",
     },
   ],
-  registrationUrl: "https://forms.gle/EgCCob2jQgX9rf2k9",
+  registrationUrl: "https://forms.gle/yrTuxG69LJMeHvp69",
   youtubeVideoId: "UGR_VQ5NTV4",
 };
 
