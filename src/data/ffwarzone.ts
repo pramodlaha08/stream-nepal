@@ -10,13 +10,12 @@ export const ffwarzoneeTournament: Tournament = {
   image: "/tournaments/ff-warzone-banner.jpg",
   logo: "/tournaments/ff-warzone-logo.png",
   prizePool: {
-    total: "₹75,000",
+    total: "₹5,000",
     currency: "NPR",
     breakdown: [
-      { position: "1st Place", amount: "₹35,000" },
-      { position: "2nd Place", amount: "₹20,000" },
-      { position: "3rd Place", amount: "₹12,000" },
-      { position: "4th Place", amount: "₹8,000" },
+      { position: "1st Place", amount: "3,000" },
+      { position: "2nd Place", amount: "₹1,500" },
+      { position: "3rd Place", amount: "₹500" },
     ],
   },
   dates: {
