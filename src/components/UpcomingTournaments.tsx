@@ -43,7 +43,7 @@ const UpcomingTournaments = () => {
       game: "PUBG Mobile",
       date: "14/11/2025",
       time: "9:00 NPT",
-      prize: "₹10,000",
+      prize: "10,000",
       seats: "Slots Available",
       status: "open", // coming_soon, open, closed
       image: "/pmwc_v2/poster.png",
@@ -57,11 +57,10 @@ const UpcomingTournaments = () => {
       game: "PUBG Mobile",
       date: "20/09/2025",
       time: "11:00 NPT",
-      prize: "₹8,000",
+      prize: "8,000",
       seats: "Slots Filled",
       status: "closed", // coming_soon, open, closed
-      image:
-        "/pmwc/thumbnails/pmwc.png",
+      image: "/pmwc/thumbnails/pmwc.png",
       gameIcon: Target,
       registrationLink: "/tournaments/pmwc",
       learnMore: "/tournaments/pmwc",
@@ -72,7 +71,7 @@ const UpcomingTournaments = () => {
       game: "Free Fire",
       date: "25/01/2025",
       time: "20:00 NPT",
-      prize: "₹30,000",
+      prize: "30,000",
       seats: "Slots Filled",
       status: "closed",
       image:
@@ -268,7 +267,9 @@ const UpcomingTournaments = () => {
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ delay: index * 0.2 + 1.3 }}
                     >
-                      <DollarSign className="w-4 h-4 text-green-400" />
+                      <span className="text-sm font-semibold text-green-400">
+                        ₨
+                      </span>
                       <span className="text-sm font-semibold text-green-400">
                         {tournament.prize}
                       </span>
