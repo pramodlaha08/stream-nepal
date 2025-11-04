@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
@@ -25,6 +25,9 @@ import {
   X,
   Clock,
   MessageCircle,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
 } from "lucide-react";
 
 const Footer = () => {
@@ -33,6 +36,15 @@ const Footer = () => {
   const [isLiveModalOpen, setIsLiveModalOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+
+  // Newsletter state
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [toast, setToast] = useState<{
+    show: boolean;
+    type: "success" | "error";
+    message: string;
+  }>({ show: false, type: "success", message: "" });
 
   // Tournament countdown state
   const [countdown, setCountdown] = useState({
@@ -69,6 +81,70 @@ const Footer = () => {
 
     return () => clearInterval(interval);
   }, [nextTournamentDate]);
+
+  // Auto-hide toast after 5 seconds
+  useEffect(() => {
+    if (toast.show) {
+      const timer = setTimeout(() => {
+        setToast({ ...toast, show: false });
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast.show]);
+
+  // Email validation
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  // Newsletter submission handler
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validation
+    if (!email.trim()) {
+      setToast({
+        show: true,
+        type: "error",
+        message: "🎮 GG! You forgot to enter your email, player!",
+      });
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setToast({
+        show: true,
+        type: "error",
+        message: "⚠️ Invalid email format! Check your setup, gamer!",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Simulate API call (replace with your actual API endpoint)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Success
+      setToast({
+        show: true,
+        type: "success",
+        message: "🏆 VICTORY! Welcome to the champions league, warrior!",
+      });
+      setEmail("");
+    } catch (error) {
+      // Error
+      setToast({
+        show: true,
+        type: "error",
+        message: "💥 Connection lost! Respawn and try again, soldier!",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Check if we're on the home page
   const isHomePage = pathname === "/";
@@ -470,7 +546,8 @@ const Footer = () => {
                 </div>
 
                 {/* Newsletter Signup */}
-                <motion.div
+                <motion.form
+                  onSubmit={handleNewsletterSubmit}
                   className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -490,18 +567,32 @@ const Footer = () => {
                     <input
                       type="email"
                       placeholder="Your email"
-                      className="flex-1 bg-black/50 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors text-sm min-w-0"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={isSubmitting}
+                      className="flex-1 bg-black/50 border border-white/20 rounded-lg px-3 py-2 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors text-sm min-w-0 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                     <motion.button
-                      className="bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg px-4 py-2 text-white flex items-center justify-center gap-2 sm:flex-shrink-0"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg px-4 py-2 text-white flex items-center justify-center gap-2 sm:flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                      whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+                      whileTap={!isSubmitting ? { scale: 0.95 } : {}}
                     >
-                      <Send className="w-4 h-4" />
-                      <span className="sm:hidden">Subscribe</span>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span className="sm:hidden">Joining...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          <span className="sm:hidden">Subscribe</span>
+                        </>
+                      )}
                     </motion.button>
                   </div>
-                </motion.div>
+                </motion.form>
               </motion.div>
             </div>
           </div>
@@ -612,9 +703,7 @@ const Footer = () => {
               animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
-            <span className="text-red-400 text-xs font-bold">
-              LIVE
-            </span>
+            <span className="text-red-400 text-xs font-bold">LIVE</span>
           </motion.div>
 
           {/* Tournament Countdown */}
@@ -852,6 +941,160 @@ const Footer = () => {
           </motion.div>
         </motion.div>
       )}
+
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toast.show && (
+          <motion.div
+            className="fixed top-8 right-8 z-[100] max-w-md"
+            initial={{ opacity: 0, y: -50, x: 100, scale: 0.5 }}
+            animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -50, x: 100, scale: 0.5 }}
+            transition={{
+              type: "spring",
+              damping: 20,
+              stiffness: 300,
+            }}
+          >
+            <motion.div
+              className={`relative backdrop-blur-xl border-2 rounded-2xl p-4 shadow-2xl overflow-hidden ${
+                toast.type === "success"
+                  ? "bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-green-400/50"
+                  : "bg-gradient-to-r from-red-500/20 to-orange-500/20 border-red-400/50"
+              }`}
+              animate={{
+                boxShadow:
+                  toast.type === "success"
+                    ? [
+                        "0 0 0 0 rgba(34, 197, 94, 0.4)",
+                        "0 0 0 20px rgba(34, 197, 94, 0)",
+                        "0 0 0 0 rgba(34, 197, 94, 0)",
+                      ]
+                    : [
+                        "0 0 0 0 rgba(239, 68, 68, 0.4)",
+                        "0 0 0 20px rgba(239, 68, 68, 0)",
+                        "0 0 0 0 rgba(239, 68, 68, 0)",
+                      ],
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              {/* Animated Background Effect */}
+              <motion.div
+                className={`absolute inset-0 ${
+                  toast.type === "success"
+                    ? "bg-gradient-to-r from-green-400/10 via-emerald-400/10 to-cyan-400/10"
+                    : "bg-gradient-to-r from-red-400/10 via-orange-400/10 to-yellow-400/10"
+                }`}
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+                style={{ backgroundSize: "200% 100%" }}
+              />
+
+              {/* Floating Particles */}
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className={`absolute ${
+                      toast.type === "success"
+                        ? "text-green-400"
+                        : "text-red-400"
+                    }`}
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                      y: [0, -20, 0],
+                      opacity: [0, 1, 0],
+                      scale: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                    }}
+                  >
+                    {toast.type === "success" ? (
+                      <Trophy className="w-3 h-3" />
+                    ) : (
+                      <Zap className="w-3 h-3" />
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 flex items-start gap-3">
+                {/* Icon */}
+                <motion.div
+                  className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
+                    toast.type === "success"
+                      ? "bg-gradient-to-br from-green-400 to-emerald-500"
+                      : "bg-gradient-to-br from-red-400 to-orange-500"
+                  }`}
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                  {toast.type === "success" ? (
+                    <CheckCircle className="w-6 h-6 text-white" />
+                  ) : (
+                    <AlertCircle className="w-6 h-6 text-white" />
+                  )}
+                </motion.div>
+
+                {/* Message */}
+                <div className="flex-1 min-w-0">
+                  <motion.h4
+                    className={`font-bold mb-1 ${
+                      toast.type === "success"
+                        ? "text-green-400"
+                        : "text-red-400"
+                    }`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    {toast.type === "success" ? "VICTORY ROYALE!" : "DEFEAT!"}
+                  </motion.h4>
+                  <motion.p
+                    className="text-white text-sm"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {toast.message}
+                  </motion.p>
+                </div>
+
+                {/* Close Button */}
+                <motion.button
+                  onClick={() => setToast({ ...toast, show: false })}
+                  className="flex-shrink-0 w-6 h-6 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="w-4 h-4 text-white" />
+                </motion.button>
+              </div>
+
+              {/* Progress Bar */}
+              <motion.div
+                className={`absolute bottom-0 left-0 h-1 ${
+                  toast.type === "success"
+                    ? "bg-gradient-to-r from-green-400 to-emerald-500"
+                    : "bg-gradient-to-r from-red-400 to-orange-500"
+                }`}
+                initial={{ width: "100%" }}
+                animate={{ width: "0%" }}
+                transition={{ duration: 5, ease: "linear" }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </footer>
   );
 };
