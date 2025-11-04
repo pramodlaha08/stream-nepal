@@ -129,7 +129,7 @@ const LiveStreamingSection = () => {
       color: "from-red-500 to-red-600",
       icon: "📺",
       description: "Watch live tournaments & highlights",
-      followers: "12.5K",
+      followers: "6.24K",
     },
     {
       name: "Facebook",
@@ -137,7 +137,7 @@ const LiveStreamingSection = () => {
       color: "from-blue-500 to-blue-600",
       icon: "📘",
       description: "Join our gaming community",
-      followers: "8.3K",
+      followers: "174",
     },
     // {
     //   name: "TikTok",
@@ -161,7 +161,7 @@ const LiveStreamingSection = () => {
       color: "from-indigo-500 to-purple-600",
       icon: "💬",
       description: "Chat with gamers",
-      followers: "3.2K",
+      followers: "100",
     },
   ];
 
