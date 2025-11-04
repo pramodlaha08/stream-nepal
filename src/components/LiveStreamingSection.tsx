@@ -25,8 +25,7 @@ const LiveStreamingSection = () => {
       id: 1,
       title: "PUBG Mobile Warriors Cup",
       status: "live",
-      thumbnail:
-        "/pmwc/thumbnails/pmwc.png",
+      thumbnail: "/pmwc/thumbnails/pmwc.png",
       viewers: "15.2K",
       duration: "2h 45m",
       platforms: [
@@ -70,32 +69,6 @@ const LiveStreamingSection = () => {
       ],
       game: "Free Fire",
       streamer: "StreamNepal Gaming",
-    },
-    {
-      id: 3,
-      title: "Valorant Pro League - Grand Finals",
-      status: "upcoming",
-      thumbnail:
-        "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=500&h=300&fit=crop",
-      scheduledTime: "Today, 8:00 PM NPT",
-      expectedViewers: "25K+",
-      platforms: [
-        {
-          name: "YouTube",
-          url: "https://youtube.com/streamnepal",
-          color: "from-red-500 to-red-600",
-          icon: "📺",
-        },
-        {
-          name: "Facebook",
-          url: "https://facebook.com/streamnepal",
-          color: "from-blue-500 to-blue-600",
-          icon: "📘",
-        },
-      ],
-      game: "Valorant",
-      streamer: "StreamNepal Pro",
-      isSpecial: true,
     },
   ];
 
@@ -323,11 +296,11 @@ const LiveStreamingSection = () => {
         </motion.div>
 
         {/* Live Streams Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {liveStreams.map((stream, index) => (
             <motion.div
               key={stream.id}
-              className="group relative"
+              className="group relative w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-md"
               initial={{ opacity: 0, y: 50, rotateX: -15 }}
               animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
               transition={{
