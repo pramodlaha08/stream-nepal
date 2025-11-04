@@ -69,6 +69,7 @@ const LiveStreamingSection = () => {
       ],
       game: "Free Fire",
       streamer: "StreamNepal Gaming",
+      
     },
   ];
 
