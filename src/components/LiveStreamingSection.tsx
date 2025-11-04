@@ -15,19 +15,67 @@ import {
   X,
 } from "lucide-react";
 
+// Stream Interface
+interface Platform {
+  name: string;
+  url: string;
+  color: string;
+  icon: string;
+}
+
+interface Stream {
+  id: number;
+  title: string;
+  status: "live" | "upcoming";
+  thumbnail: string;
+  viewers?: string;
+  duration?: string;
+  expectedViewers?: string;
+  scheduledTime?: string;
+  platforms: Platform[];
+  game: string;
+  streamer: string;
+  isSpecial?: boolean;
+}
+
 const LiveStreamingSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const liveStreams = [
+  const liveStreams: Stream[] = [
     {
       id: 1,
+      title: "🏆 Upcoming: PMWC 2.0",
+      status: "upcoming",
+      thumbnail: "/pmwc_v2/poster.png",
+      expectedViewers: "",
+      scheduledTime: "14 Nov, 9:00 AM",
+      platforms: [
+        {
+          name: "YouTube",
+          url: "https://www.youtube.com/@MRSADY",
+          color: "from-red-500 to-red-600",
+          icon: "📺",
+        },
+        {
+          name: "Facebook",
+          url: "https://www.facebook.com/MRSADDDY",
+          color: "from-blue-500 to-blue-600",
+          icon: "📘",
+        },
+      ],
+      game: "PUBG Mobile",
+      streamer: "StreamNepal Official",
+      isSpecial: true,
+    },
+    {
+      id: 2,
       title: "PUBG Mobile Warriors Cup",
       status: "live",
       thumbnail: "/pmwc/thumbnails/pmwc.png",
-      viewers: "15.2K",
-      duration: "2h 45m",
+      viewers: "2K",
+      duration: "4h 41m",
       platforms: [
         {
           name: "YouTube",
@@ -46,13 +94,13 @@ const LiveStreamingSection = () => {
       streamer: "StreamNepal Official",
     },
     {
-      id: 2,
+      id: 3,
       title: "FreeFire Battle Royale Tournament",
       status: "live",
       thumbnail:
         "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&h=300&fit=crop",
-      viewers: "8.7K",
-      duration: "1h 23m",
+      viewers: "1K",
+      duration: "1h 57m",
       platforms: [
         {
           name: "YouTube",
@@ -69,8 +117,8 @@ const LiveStreamingSection = () => {
       ],
       game: "Free Fire",
       streamer: "StreamNepal Gaming",
-      
     },
+    
   ];
 
   // Platform data for subscription modal
