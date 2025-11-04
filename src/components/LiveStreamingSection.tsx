@@ -118,7 +118,6 @@ const LiveStreamingSection = () => {
       game: "Free Fire",
       streamer: "StreamNepal Gaming",
     },
-    
   ];
 
   // Platform data for subscription modal
@@ -139,22 +138,22 @@ const LiveStreamingSection = () => {
       description: "Join our gaming community",
       followers: "174",
     },
-    // {
-    //   name: "TikTok",
-    //   url: "https://tiktok.com/@streamnepal",
-    //   color: "from-pink-500 to-pink-600",
-    //   icon: "🎵",
-    //   description: "Gaming highlights & clips",
-    //   followers: "15.2K",
-    // },
-    // {
-    //   name: "Instagram",
-    //   url: "https://instagram.com/streamnepal",
-    //   color: "from-purple-400 to-pink-500",
-    //   icon: "📸",
-    //   description: "Behind the scenes content",
-    //   followers: "9.8K",
-    // },
+    {
+      name: "TikTok",
+      url: "https://www.tiktok.com/@mr_sady786",
+      color: "from-pink-500 to-pink-600",
+      icon: "🎵",
+      description: "Gaming highlights & clips",
+      followers: "346+",
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/mr_sady_2.0/",
+      color: "from-purple-400 to-pink-500",
+      icon: "📸",
+      description: "Behind the scenes content",
+      followers: "75+",
+    },
     {
       name: "Discord",
       url: "https://discord.gg/tzNm6t3jZa",
