@@ -71,11 +71,11 @@ const UpcomingTournaments = () => {
       game: "Free Fire",
       date: "25/01/2025",
       time: "20:00 NPT",
-      prize: "30,000",
+      prize: "5,000",
       seats: "Slots Filled",
       status: "closed",
       image:
-        "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=250&fit=crop",
+        "/ffwarzone/poster.png",
       gameIcon: Zap,
       registrationLink: "/tournaments/ffwarzone",
       learnMore: "/tournaments/ffwarzone",
