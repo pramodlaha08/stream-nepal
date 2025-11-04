@@ -263,7 +263,14 @@ const ServicesShowcase = () => {
           className="text-center mt-16"
         >
           <motion.button
-            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden"
+            onClick={() => {
+              const tournamentsSection = document.getElementById("tournaments");
+              tournamentsSection?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }}
+            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
