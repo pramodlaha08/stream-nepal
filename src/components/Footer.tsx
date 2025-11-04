@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import {
@@ -33,6 +33,42 @@ const Footer = () => {
   const [isLiveModalOpen, setIsLiveModalOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+
+  // Tournament countdown state
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // Set your next tournament date here (format: "YYYY-MM-DD HH:mm:ss")
+  const nextTournamentDate = new Date("2025-11-14 09:00:00").getTime();
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = nextTournamentDate - now;
+
+      if (distance > 0) {
+        setCountdown({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          ),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        });
+      } else {
+        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, [nextTournamentDate]);
 
   // Check if we're on the home page
   const isHomePage = pathname === "/";
@@ -107,21 +143,21 @@ const Footer = () => {
       icon: Youtube,
       href: "https://www.youtube.com/@MRSADY",
       color: "from-red-500 to-red-600",
-      followers: "12.5K",
+      followers: "6.24K",
     },
     {
       name: "Facebook",
       icon: Facebook,
       href: "https://facebook.com/mrsady",
       color: "from-blue-500 to-blue-600",
-      followers: "8.3K",
+      followers: "174+",
     },
     {
       name: "Discord",
       icon: MessageCircle,
       href: "https://discord.gg/tzNm6t3jZa",
       color: "from-indigo-500 to-purple-600",
-      followers: "5.7K",
+      followers: "100+",
     },
     // {
     //   name: "Instagram",
@@ -290,7 +326,7 @@ const Footer = () => {
                     whileHover={{ x: 5 }}
                   >
                     <Mail className="w-4 h-4 mr-3" />
-                    <span className="text-sm">contact@streamnepal.com</span>
+                    <span className="text-sm">streamnepal001@gmail.com</span>
                   </motion.div>
                   <motion.div
                     className="flex items-center text-gray-400 hover:text-cyan-400 transition-colors"
@@ -576,19 +612,45 @@ const Footer = () => {
               animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
-            <span className="text-red-400 text-xs font-bold">3 LIVE</span>
+            <span className="text-red-400 text-xs font-bold">
+              LIVE
+            </span>
           </motion.div>
 
           {/* Tournament Countdown */}
           <motion.div
-            className="bg-black/50 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-3 text-center min-w-[120px]"
+            className="bg-black/50 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-3 text-center min-w-[160px]"
             whileHover={{ scale: 1.05 }}
           >
-            <p className="text-cyan-400 text-xs font-semibold mb-1">
+            <p className="text-cyan-400 text-xs font-semibold mb-2">
               Next Tournament
             </p>
-            <p className="text-white text-lg font-bold">2:45:30</p>
-            <p className="text-gray-400 text-xs">Hours Left</p>
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <p className="text-white text-lg font-bold">{countdown.days}</p>
+                <p className="text-gray-400 text-xs">Days</p>
+              </div>
+              <div>
+                <p className="text-white text-lg font-bold">
+                  {countdown.hours}
+                </p>
+                <p className="text-gray-400 text-xs">Hrs</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              <div>
+                <p className="text-white text-base font-bold">
+                  {countdown.minutes}
+                </p>
+                <p className="text-gray-400 text-xs">Min</p>
+              </div>
+              <div>
+                <p className="text-white text-base font-bold">
+                  {countdown.seconds}
+                </p>
+                <p className="text-gray-400 text-xs">Sec</p>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
@@ -617,7 +679,7 @@ const Footer = () => {
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <span className="text-white text-xs font-bold">3</span>
+            <span className="text-white text-xs font-bold">2</span>
           </motion.div>
         </motion.button>
       </div>
@@ -699,20 +761,16 @@ const Footer = () => {
                         LIVE NOW
                       </span>
                     </div>
-                    <span className="text-white font-semibold">3</span>
+                    <span className="text-white font-semibold">2</span>
                   </div>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between text-gray-300">
-                      <span>PUBG Championship</span>
-                      <span className="text-cyan-400">15.2K viewers</span>
+                      <span>PMWC</span>
+                      <span className="text-cyan-400">2K viewers</span>
                     </div>
                     <div className="flex justify-between text-gray-300">
-                      <span>Free Fire Tournament</span>
-                      <span className="text-cyan-400">8.7K viewers</span>
-                    </div>
-                    <div className="flex justify-between text-gray-300">
-                      <span>Community Stream</span>
-                      <span className="text-cyan-400">2.1K viewers</span>
+                      <span>FF Warzone</span>
+                      <span className="text-cyan-400">1K viewers</span>
                     </div>
                   </div>
                 </motion.div>
@@ -731,34 +789,63 @@ const Footer = () => {
                     </span>
                   </div>
                   <div className="text-center">
-                    <p className="text-white text-2xl font-bold mb-1">
-                      2:45:30
-                    </p>
+                    <div className="grid grid-cols-4 gap-2 mb-2">
+                      <div>
+                        <p className="text-white text-xl font-bold">
+                          {countdown.days}
+                        </p>
+                        <p className="text-gray-400 text-xs">Days</p>
+                      </div>
+                      <div>
+                        <p className="text-white text-xl font-bold">
+                          {countdown.hours}
+                        </p>
+                        <p className="text-gray-400 text-xs">Hrs</p>
+                      </div>
+                      <div>
+                        <p className="text-white text-xl font-bold">
+                          {countdown.minutes}
+                        </p>
+                        <p className="text-gray-400 text-xs">Min</p>
+                      </div>
+                      <div>
+                        <p className="text-white text-xl font-bold">
+                          {countdown.seconds}
+                        </p>
+                        <p className="text-gray-400 text-xs">Sec</p>
+                      </div>
+                    </div>
                     <p className="text-gray-400 text-sm">
-                      Valorant Pro League Finals
+                      PUBG Mobile Warriors Cup 2.0
                     </p>
                     <p className="text-gray-500 text-xs mt-1">
-                      Expected: 25K+ viewers
+                      14 Nov, 9:00 AM NPT
                     </p>
                   </div>
                 </motion.div>
 
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-2">
-                  <motion.button
-                    className="flex-1 bg-gradient-to-r from-red-500 to-red-600 rounded-xl py-3 px-4 text-white font-semibold text-sm"
+                  <motion.a
+                    href="https://www.youtube.com/@MRSADY/streams"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-gradient-to-r from-red-500 to-red-600 rounded-xl py-3 px-4 text-white font-semibold text-sm text-center"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     Watch Live
-                  </motion.button>
-                  <motion.button
-                    className="flex-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl py-3 px-4 text-white font-semibold text-sm"
+                  </motion.a>
+                  <motion.a
+                    href="https://wa.me/9779820744881?text=Hi%20Stream%20Nepal!%20I%20would%20like%20to%20know%20more%20about%20upcoming%20tournaments."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl py-3 px-4 text-white font-semibold text-sm text-center"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Set Reminder
-                  </motion.button>
+                    Contact
+                  </motion.a>
                 </div>
               </div>
             </div>
