@@ -61,7 +61,10 @@ export default async function PMWCv2Page() {
           <div className="container mx-auto px-4 pb-8 space-y-16">
             {/* Tournament Header */}
             <section>
-              <TournamentHeader tournament={pmwc_v2Tournament} />
+              <TournamentHeader
+                tournament={pmwc_v2Tournament}
+                liveRegisteredTeams={initialStats?.total}
+              />
             </section>
 
             {/* Tournament Details */}

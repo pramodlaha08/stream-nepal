@@ -15,11 +15,15 @@ import {
 
 interface TournamentHeaderProps {
   tournament: Tournament;
+  liveRegisteredTeams?: number; // Live count from Google Sheets
 }
 
 export default function TournamentHeader({
   tournament,
+  liveRegisteredTeams,
 }: TournamentHeaderProps) {
+  // Use live count if available, otherwise fall back to tournament data
+  const registeredTeams = liveRegisteredTeams ?? tournament.registeredTeams;
   const getStatusBadge = (status: string) => {
     const baseClasses =
       "px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider";
@@ -47,7 +51,7 @@ export default function TournamentHeader({
   };
 
   const getProgressPercentage = () => {
-    return (tournament.registeredTeams / tournament.maxTeams) * 100;
+    return (registeredTeams / tournament.maxTeams) * 100;
   };
 
   return (
@@ -192,11 +196,19 @@ export default function TournamentHeader({
                     <Users className="w-4 h-4 md:w-6 md:h-6 text-blue-400" />
                   </div>
                   <span className="text-slate-400 text-xs md:text-sm font-medium">
-                    Teams
+                    Teams{" "}
+                    {liveRegisteredTeams !== undefined && (
+                      <span className="ml-1 inline-flex items-center">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                      </span>
+                    )}
                   </span>
                 </div>
                 <div className="text-xl md:text-2xl font-bold text-blue-400">
-                  {tournament.registeredTeams}/{tournament.maxTeams}
+                  {registeredTeams}/{tournament.maxTeams}
                 </div>
                 <div className="mt-2">
                   <div className="bg-slate-700 rounded-full h-1.5 md:h-2">
