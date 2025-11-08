@@ -247,13 +247,19 @@ export default function TournamentDetails({
               })}
             </div>
 
-            {/* Epic Call to Action */}
+            {/* Epic Call to Action - Registration Button */}
             <div className="text-center mt-12">
-              <div className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl border border-cyan-400/30 backdrop-blur-sm">
-                <span className="text-slate-300 font-medium">
+              <a
+                href={tournament.registrationUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl border border-cyan-400/30 backdrop-blur-sm hover:from-cyan-500/30 hover:via-purple-500/30 hover:to-pink-500/30 hover:border-cyan-400/50 hover:scale-105 transform transition-all duration-300 group cursor-pointer"
+              >
+                <span className="text-slate-300 font-medium group-hover:text-white transition-colors">
                   ⚡ REGISTER NOW TO CLAIM YOUR SHARE ⚡
                 </span>
-              </div>
+                <ExternalLink className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+              </a>
             </div>
           </div>
         </div>
