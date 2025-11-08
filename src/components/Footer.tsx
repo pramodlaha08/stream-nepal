@@ -28,6 +28,7 @@ import {
   CheckCircle,
   AlertCircle,
   Loader2,
+  Instagram,
 } from "lucide-react";
 
 const Footer = () => {
@@ -224,7 +225,7 @@ const Footer = () => {
     {
       name: "Facebook",
       icon: Facebook,
-      href: "https://facebook.com/mrsady",
+      href: "https://www.facebook.com/MRSADDDY",
       color: "from-blue-500 to-blue-600",
       followers: "174+",
     },
@@ -235,13 +236,13 @@ const Footer = () => {
       color: "from-indigo-500 to-purple-600",
       followers: "100+",
     },
-    // {
-    //   name: "Instagram",
-    //   icon: Instagram,
-    //   href: "https://instagram.com/streamnepal",
-    //   color: "from-pink-500 to-purple-500",
-    //   followers: "9.8K",
-    // },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      href: "https://www.instagram.com/mr_sady_2.0/",
+      color: "from-pink-500 to-purple-500",
+      followers: "75+",
+    },
   ];
 
   const stats = [
