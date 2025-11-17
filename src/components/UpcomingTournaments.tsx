@@ -39,17 +39,17 @@ const UpcomingTournaments = () => {
   const tournaments: Tournament[] = [
     {
       id: 1,
-      title: "PUBG Mobile Warriors Cup 2.0",
-      game: "PUBG Mobile",
-      date: "14/11/2025",
+      title: "SN Battle Field",
+      game: "Free Fire",
+      date: "Upcoming",
       time: "9:00 NPT",
       prize: "10,000",
       seats: "Slots Available",
       status: "open", // coming_soon, open, closed
-      image: "/pmwc_v2/poster.png",
+      image: "/snbattlefield/poster.png",
       gameIcon: Target,
-      learnMore: "/tournaments/pmwc_v2",
-      registrationLink: "https://forms.gle/yrTuxG69LJMeHvp69",
+      learnMore: "/tournaments/snbattlefield",
+      registrationLink: "https://forms.gle/ZXAJqjNm86e4dWqr8",
     },
     {
       id: 2,
