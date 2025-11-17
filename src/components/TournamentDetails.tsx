@@ -19,12 +19,50 @@ interface TournamentDetailsProps {
 export default function TournamentDetails({
   tournament,
 }: TournamentDetailsProps) {
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "Coming Soon";
+
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return "Coming Soon";
+
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch {
+      return "Coming Soon";
+    }
+  };
+
+  const getDateDisplay = (
+    start?: string,
+    end?: string,
+    customMessage?: string
+  ) => {
+    // If custom message exists, show it
+    if (customMessage) {
+      return customMessage;
+    }
+
+    // If both dates exist, show both
+    if (start && end) {
+      return `${formatDate(start)} - ${formatDate(end)}`;
+    }
+
+    // If only start exists
+    if (start) {
+      return formatDate(start);
+    }
+
+    // If only end exists
+    if (end) {
+      return formatDate(end);
+    }
+
+    // Default fallback
+    return "Coming Soon";
   };
 
   return (
@@ -281,51 +319,91 @@ export default function TournamentDetails({
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
-                <div>
-                  <div className="text-slate-400 text-sm">
-                    Registration Opens
+              {/* Registration Opens */}
+              {tournament.dates.registration.customMessage ? (
+                <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                  <div>
+                    <div className="text-slate-400 text-sm">Registration</div>
+                    <div className="text-white font-semibold">
+                      {tournament.dates.registration.customMessage}
+                    </div>
                   </div>
-                  <div className="text-white font-semibold">
-                    {formatDate(tournament.dates.registration.start)}
-                  </div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              </div>
+              ) : (
+                <>
+                  {tournament.dates.registration.start && (
+                    <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                      <div>
+                        <div className="text-slate-400 text-sm">
+                          Registration Opens
+                        </div>
+                        <div className="text-white font-semibold">
+                          {formatDate(tournament.dates.registration.start)}
+                        </div>
+                      </div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    </div>
+                  )}
 
-              <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
-                <div>
-                  <div className="text-slate-400 text-sm">
-                    Registration Closes
-                  </div>
-                  <div className="text-white font-semibold">
-                    {formatDate(tournament.dates.registration.end)}
-                  </div>
-                </div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              </div>
+                  {tournament.dates.registration.end && (
+                    <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                      <div>
+                        <div className="text-slate-400 text-sm">
+                          Registration Closes
+                        </div>
+                        <div className="text-white font-semibold">
+                          {formatDate(tournament.dates.registration.end)}
+                        </div>
+                      </div>
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    </div>
+                  )}
+                </>
+              )}
 
-              <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
-                <div>
-                  <div className="text-slate-400 text-sm">
-                    Tournament Starts
+              {/* Tournament Dates */}
+              {tournament.dates.tournament.customMessage ? (
+                <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                  <div>
+                    <div className="text-slate-400 text-sm">Tournament</div>
+                    <div className="text-white font-semibold">
+                      {tournament.dates.tournament.customMessage}
+                    </div>
                   </div>
-                  <div className="text-white font-semibold">
-                    {formatDate(tournament.dates.tournament.start)}
-                  </div>
+                  <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
                 </div>
-                <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-              </div>
+              ) : (
+                <>
+                  {tournament.dates.tournament.start && (
+                    <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                      <div>
+                        <div className="text-slate-400 text-sm">
+                          Tournament Starts
+                        </div>
+                        <div className="text-white font-semibold">
+                          {formatDate(tournament.dates.tournament.start)}
+                        </div>
+                      </div>
+                      <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                    </div>
+                  )}
 
-              <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
-                <div>
-                  <div className="text-slate-400 text-sm">Tournament Ends</div>
-                  <div className="text-white font-semibold">
-                    {formatDate(tournament.dates.tournament.end)}
-                  </div>
-                </div>
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              </div>
+                  {tournament.dates.tournament.end && (
+                    <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700/50">
+                      <div>
+                        <div className="text-slate-400 text-sm">
+                          Tournament Ends
+                        </div>
+                        <div className="text-white font-semibold">
+                          {formatDate(tournament.dates.tournament.end)}
+                        </div>
+                      </div>
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
