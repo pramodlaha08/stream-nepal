@@ -42,12 +42,21 @@ export default function TournamentHeader({
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "Coming Soon";
+
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return "Coming Soon";
+
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch {
+      return "Coming Soon";
+    }
   };
 
   const getProgressPercentage = () => {
