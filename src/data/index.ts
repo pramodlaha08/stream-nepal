@@ -6,7 +6,7 @@ export * from "./utils";
 
 // Export tournament data
 export * from "./pmwc";
-export * from "./pmwc_v2";
+export * from "./snbattlefield";
 export * from "./ffwarzone";
 
 // Tournament registry for easy access
