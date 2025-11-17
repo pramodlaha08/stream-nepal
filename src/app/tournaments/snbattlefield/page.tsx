@@ -11,11 +11,11 @@ import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PMWC 2.0 - PUBG Mobile Warriors Cup | Stream Nepal",
+  title: "SN Battle Field | Stream Nepal",
   description:
-    "Join the ultimate PUBG Mobile tournament featuring the best teams from Nepal. Battle for glory and massive prize pools.",
+    "Join the ultimate Free Fire tournament featuring the best teams from Nepal. Battle for glory and massive prize pools.",
   keywords:
-    "PUBG Mobile, tournament, esports, gaming, Nepal, PMWC, warriors cup, live registration",
+    "Free Fire, tournament, esports, gaming, Nepal, PMWC, warriors cup, live registration",
 };
 
 // Revalidate every 30 seconds to keep data fresh
