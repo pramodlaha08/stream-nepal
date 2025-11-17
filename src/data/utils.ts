@@ -6,6 +6,8 @@ import { Tournament } from "./types";
  * @returns boolean indicating if tournament is completed and should show streaming
  */
 export const isTournamentStreamed = (tournament: Tournament): boolean => {
+  if (!tournament.dates.tournament.end) return false;
+
   const currentDate = new Date();
   const tournamentEndDate = new Date(tournament.dates.tournament.end);
 
@@ -22,6 +24,17 @@ export const getTournamentStatus = (
   tournament: Tournament
 ): Tournament["status"] => {
   const currentDate = new Date();
+
+  // If dates are not set, return the tournament's status
+  if (
+    !tournament.dates.registration.start ||
+    !tournament.dates.registration.end ||
+    !tournament.dates.tournament.start ||
+    !tournament.dates.tournament.end
+  ) {
+    return tournament.status;
+  }
+
   const registrationStart = new Date(tournament.dates.registration.start);
   const registrationEnd = new Date(tournament.dates.registration.end);
   const tournamentStart = new Date(tournament.dates.tournament.start);
@@ -63,9 +76,11 @@ export const getRegistrationProgress = (
  * @returns Formatted date string
  */
 export const formatTournamentDate = (
-  dateString: string,
+  dateString?: string,
   locale: string = "en-US"
 ): string => {
+  if (!dateString) return "Coming Soon";
+
   return new Date(dateString).toLocaleDateString(locale, {
     year: "numeric",
     month: "long",
@@ -76,9 +91,11 @@ export const formatTournamentDate = (
 /**
  * Helper function to get days remaining until tournament
  * @param tournamentDate Tournament start date
- * @returns number of days remaining (negative if past)
+ * @returns number of days remaining (negative if past, null if no date)
  */
-export const getDaysRemaining = (tournamentDate: string): number => {
+export const getDaysRemaining = (tournamentDate?: string): number | null => {
+  if (!tournamentDate) return null;
+
   const currentDate = new Date();
   const tournament = new Date(tournamentDate);
   const timeDiff = tournament.getTime() - currentDate.getTime();

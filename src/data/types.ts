@@ -16,12 +16,14 @@ export interface Tournament {
   };
   dates: {
     registration: {
-      start: string;
-      end: string;
+      start?: string;
+      end?: string;
+      customMessage?: string;
     };
     tournament: {
-      start: string;
-      end: string;
+      start?: string;
+      end?: string;
+      customMessage?: string;
     };
   };
   status: "registration" | "upcoming" | "live" | "finished";
@@ -114,16 +116,19 @@ export interface PrizePool {
 // Tournament dates interface
 export interface TournamentDates {
   registration: {
-    start: string;
-    end: string;
+    start?: string;
+    end?: string;
+    customMessage?: string;
   };
   tournament: {
-    start: string;
-    end: string;
+    start?: string;
+    end?: string;
+    customMessage?: string;
   };
   practice?: {
-    start: string;
-    end: string;
+    start?: string;
+    end?: string;
+    customMessage?: string;
   };
 }
 
