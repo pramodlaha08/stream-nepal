@@ -1,7 +1,7 @@
 "use client";
 
 import { Tournament } from "@/data";
-import {  Trophy, Users, GamepadIcon, ArrowRight } from "lucide-react";
+import { Trophy, Users, GamepadIcon, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 interface TournamentListingProps {
@@ -29,12 +29,21 @@ export default function TournamentListing({
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "Coming Soon";
+
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return "Coming Soon";
+
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+    } catch {
+      return "Coming Soon";
+    }
   };
 
   return (
