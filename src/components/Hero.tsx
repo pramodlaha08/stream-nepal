@@ -1,159 +1,147 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Play, Trophy, Zap, Users, Star } from "lucide-react";
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => window.innerWidth < 768;
+    setIsMobile(checkMobile());
+
+    // Throttle mouse tracking for better performance
+    let rafId: number;
+    let lastTime = 0;
+    const throttleDelay = 50; // Update every 50ms instead of every frame
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      const currentTime = Date.now();
+      if (currentTime - lastTime < throttleDelay) return;
+
+      lastTime = currentTime;
+      if (rafId) cancelAnimationFrame(rafId);
+
+      rafId = requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      });
     };
 
     const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+      setIsMobile(checkMobile());
     };
 
-    // Set initial window size
-    handleResize();
-
-    window.addEventListener("mousemove", handleMouseMove);
+    // Only add mouse tracking on desktop
+    if (!checkMobile()) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
-      {/* Animated Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black,transparent)]" />
+      {/* Simplified Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0">
-        {windowSize.width > 0 &&
-          [...Array(50)].map((_, i) => (
+      {/* Reduced Floating Particles - only on desktop */}
+      {!isMobile && (
+        <div className="absolute inset-0">
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-cyan-400 rounded-full"
+              className="absolute w-1 h-1 bg-cyan-400/60 rounded-full will-change-transform"
               initial={{
-                x: Math.random() * windowSize.width,
-                y: Math.random() * windowSize.height,
+                x:
+                  Math.random() *
+                  (typeof window !== "undefined" ? window.innerWidth : 1000),
+                y:
+                  Math.random() *
+                  (typeof window !== "undefined" ? window.innerHeight : 1000),
                 opacity: 0,
               }}
               animate={{
-                x: Math.random() * windowSize.width,
-                y: Math.random() * windowSize.height,
-                opacity: [0, 1, 0],
+                y: [null, Math.random() * 100 - 50],
+                opacity: [0, 0.8, 0],
               }}
               transition={{
-                duration: Math.random() * 10 + 5,
+                duration: Math.random() * 8 + 5,
                 repeat: Infinity,
                 ease: "linear",
               }}
             />
           ))}
-      </div>
+        </div>
+      )}
 
-      {/* Dynamic Cursor Follow Effect */}
-      <motion.div
-        className="fixed w-96 h-96 bg-gradient-radial from-cyan-500/10 to-transparent rounded-full pointer-events-none z-10"
-        animate={{
-          x: mousePosition.x - 192,
-          y: mousePosition.y - 192,
-        }}
-        transition={{ type: "spring", damping: 30, stiffness: 200 }}
-      />
+      {/* Cursor Follow Effect - Desktop Only */}
+      {!isMobile && (
+        <motion.div
+          className="fixed w-64 h-64 bg-gradient-radial from-cyan-500/10 to-transparent rounded-full pointer-events-none z-10 will-change-transform"
+          animate={{
+            x: mousePosition.x - 128,
+            y: mousePosition.y - 128,
+          }}
+          transition={{ type: "spring", damping: 50, stiffness: 150 }}
+        />
+      )}
 
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 pt-30 sm:pt-24">
-        {/* Logo/Brand Animation */}
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 pt-24 sm:pt-20">
+        {/* Logo/Brand - Simplified Animation */}
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-8"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-8 text-center"
         >
-          <motion.div
-            className="relative"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <h1 className="text-5xl sm:text-7xl md:text-9xl font-black bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-              STREAM
-            </h1>
-            <motion.h1
-              className="text-5xl sm:text-7xl md:text-9xl font-black bg-gradient-to-r from-pink-400 via-red-400 to-yellow-400 bg-clip-text text-transparent text-center"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              style={{
-                backgroundSize: "200% 100%",
-              }}
-            >
-              NEPAL
-            </motion.h1>
-          </motion.div>
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+            STREAM
+          </h1>
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-400 via-red-400 to-yellow-400 bg-clip-text text-transparent">
+            NEPAL
+          </h1>
         </motion.div>
 
-        {/* Tagline with Typing Effect */}
+        {/* Tagline */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
           className="text-center mb-12"
         >
-          <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5 }}
-          >
+          <p className="text-base sm:text-xl md:text-2xl text-gray-300 font-light mb-3">
             Elite Gaming Tournaments & Live Streaming Excellence
-          </motion.p>
-          <motion.p
-            className="text-base sm:text-lg text-gray-400"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2 }}
-          >
+          </p>
+          <p className="text-sm sm:text-base text-gray-400">
             PUBG • FreeFire • Technical Support • Esports Revolution
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Action Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-6"
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 mb-12"
         >
           <motion.a
             href="https://wa.me/9779820744881?text=Hi%20Stream%20Nepal!%20I%20would%20like%20to%20know%20more%20about%20your%20tournaments%20and%20streaming%20services.%20Please%20provide%20me%20with%20more%20details."
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden inline-block"
-            whileHover={{ scale: 1.05, rotate: [-1, 1, -1, 0] }}
+            className="group relative px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-bold text-white overflow-hidden inline-block text-center"
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "0%" }}
-              transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
-            />
-            <span className="relative z-10 flex items-center gap-2">
-              <Play className="w-5 h-5" />
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <Play className="w-4 h-4 sm:w-5 sm:h-5" />
               WhatsApp
             </span>
           </motion.a>
@@ -166,29 +154,23 @@ const Hero = () => {
                 block: "start",
               });
             }}
-            className="group px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-xl font-bold relative overflow-hidden cursor-pointer"
-            whileHover={{ scale: 1.05, borderColor: "#f59e0b" }}
+            className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-cyan-400 text-cyan-400 rounded-xl font-bold relative overflow-hidden cursor-pointer"
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-purple-400/20"
-              initial={{ scale: 0 }}
-              whileHover={{ scale: 1 }}
-              transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
-            />
-            <span className="relative z-10 flex items-center gap-2">
-              <Trophy className="w-5 h-5" />
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <Trophy className="w-4 h-4 sm:w-5 sm:h-5" />
               View Tournaments
             </span>
           </motion.button>
         </motion.div>
 
-        {/* Stats Counter */}
+        {/* Stats Counter - Simplified */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3, duration: 1 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          transition={{ delay: 1, duration: 0.8 }}
+          className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center max-w-4xl"
         >
           {[
             { icon: Trophy, value: "6+", label: "Tournaments" },
@@ -199,29 +181,18 @@ const Hero = () => {
             <motion.div
               key={index}
               className="group"
-              whileHover={{ scale: 1.1, y: -10 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              whileHover={{ scale: 1.08, y: -5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
-              <motion.div
-                className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-cyan-400/20 to-purple-600/20 rounded-xl flex items-center justify-center"
-                whileHover={{
-                  background:
-                    "linear-gradient(45deg, rgba(34, 211, 238, 0.3), rgba(147, 51, 234, 0.3))",
-                  rotate: 360,
-                }}
-                transition={{ duration: 0.8 }}
-              >
-                <stat.icon className="w-8 h-8 text-cyan-400 group-hover:text-purple-400 transition-colors" />
-              </motion.div>
-              <motion.div
-                className="text-2xl font-bold text-white mb-1"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 3 + index * 0.2 }}
-              >
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 bg-gradient-to-br from-cyan-400/20 to-purple-600/20 rounded-xl flex items-center justify-center">
+                <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 group-hover:text-purple-400 transition-colors" />
+              </div>
+              <div className="text-xl sm:text-2xl font-bold text-white mb-1">
                 {stat.value}
-              </motion.div>
-              <div className="text-gray-400 text-sm">{stat.label}</div>
+              </div>
+              <div className="text-gray-400 text-xs sm:text-sm">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </motion.div>
