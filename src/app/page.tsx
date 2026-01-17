@@ -1,11 +1,11 @@
 import Navigation from "../components/Navigation";
 import Hero from "../components/Hero";
+import AnimatedBackground from "../components/AnimatedBackground";
+import Footer from "../components/Footer";
 import ServicesShowcase from "../components/ServicesShowcase";
 import UpcomingTournaments from "../components/UpcomingTournaments";
 import LiveStreamingSection from "../components/LiveStreamingSection";
 import ContactUs from "../components/ContactUs";
-import Footer from "../components/Footer";
-import AnimatedBackground from "../components/AnimatedBackground";
 
 export default function HomePage() {
   return (
