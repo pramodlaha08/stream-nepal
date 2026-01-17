@@ -42,8 +42,8 @@ const UpcomingTournaments = () => {
       title: "SN Battle Field",
       game: "Free Fire",
       date: "Upcoming",
-      time: "9:00 NPT",
-      prize: "10,000",
+      time: "10:00 NPT",
+      prize: "15,000",
       seats: "Slots Available",
       status: "open", // coming_soon, open, closed
       image: "/snbattlefield/poster.png",
