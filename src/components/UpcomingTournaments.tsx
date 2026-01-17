@@ -49,7 +49,7 @@ const UpcomingTournaments = () => {
       image: "/snbattlefield/poster.png",
       gameIcon: Target,
       learnMore: "/tournaments/snbattlefield",
-      registrationLink: "https://forms.gle/ZXAJqjNm86e4dWqr8",
+      registrationLink: "https://forms.gle/YYWikjBWDKFVz3SW9",
     },
     {
       id: 2,

@@ -102,7 +102,7 @@ export const snBattleFieldTournament: Tournament = {
       matchName: "Group A – Match 1",
       time: "10:00 AM – 10:40 AM",
       round: "Day 1",
-      map: ""
+      map: "",
     },
     {
       matchNumber: 2,
@@ -213,6 +213,6 @@ export const snBattleFieldTournament: Tournament = {
       color: "from-blue-600 to-blue-700",
     },
   ],
-  registrationUrl: "https://forms.gle/ZXAJqjNm86e4dWqr8",
+  registrationUrl: "https://forms.gle/YYWikjBWDKFVz3SW9",
   youtubeVideoId: "UGR_VQ5NTV4",
 };
