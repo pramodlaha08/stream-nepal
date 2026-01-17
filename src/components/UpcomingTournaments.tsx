@@ -34,7 +34,7 @@ interface Tournament {
 
 const UpcomingTournaments = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const tournaments: Tournament[] = [
     {
@@ -74,8 +74,7 @@ const UpcomingTournaments = () => {
       prize: "5,000",
       seats: "Slots Filled",
       status: "closed",
-      image:
-        "/ffwarzone/poster.png",
+      image: "/ffwarzone/poster.png",
       gameIcon: Zap,
       registrationLink: "/tournaments/ffwarzone",
       learnMore: "/tournaments/ffwarzone",
@@ -124,36 +123,26 @@ const UpcomingTournaments = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.div
-            className="flex items-center justify-center flex-col sm:flex-row mb-6"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
+          <div className="flex items-center justify-center flex-col sm:flex-row mb-6">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
               <Trophy className="w-6 h-6 text-white" />
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black">
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
                 UPCOMING TOURNAMENTS
               </span>
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.p
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
+          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
             Join competitive tournaments with exciting prizes and prove your
             skills against the best players in Nepal.
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Tournaments Grid */}
@@ -190,7 +179,7 @@ const UpcomingTournaments = () => {
                   <div className="absolute top-4 right-4">
                     <motion.div
                       className={`px-3 py-1 bg-gradient-to-r ${getStatusColor(
-                        tournament.status
+                        tournament.status,
                       )} rounded-full`}
                       initial={{ opacity: 0, scale: 0 }}
                       animate={isInView ? { opacity: 1, scale: 1 } : {}}
