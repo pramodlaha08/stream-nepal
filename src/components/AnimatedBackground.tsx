@@ -13,20 +13,25 @@ interface ParticleProps {
 
 const ParticleSystem = () => {
   const [particles, setParticles] = useState<ParticleProps[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => window.innerWidth < 768;
+    setIsMobile(checkMobile());
+
     const generateParticles = () => {
-      // Only generate particles if window is available
       if (typeof window === "undefined") return;
 
       const newParticles: ParticleProps[] = [];
-      const colors = ["#22d3ee", "#a855f7", "#ec4899", "#f59e0b", "#10b981"];
+      const colors = ["#22d3ee", "#a855f7", "#ec4899"];
+      // Reduce particles: 10 on mobile, 20 on desktop (was 100)
+      const particleCount = checkMobile() ? 10 : 20;
 
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < particleCount; i++) {
         newParticles.push({
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
-          size: Math.random() * 4 + 1,
+          size: Math.random() * 3 + 1,
           color: colors[Math.floor(Math.random() * colors.length)],
           delay: Math.random() * 5,
         });
@@ -36,9 +41,22 @@ const ParticleSystem = () => {
     };
 
     generateParticles();
-    window.addEventListener("resize", generateParticles);
 
-    return () => window.removeEventListener("resize", generateParticles);
+    // Debounce resize handler
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        setIsMobile(checkMobile());
+        generateParticles();
+      }, 250);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeout);
+    };
   }, []);
 
   return (
@@ -46,22 +64,20 @@ const ParticleSystem = () => {
       {particles.map((particle, index) => (
         <motion.div
           key={index}
-          className="absolute rounded-full"
+          className="absolute rounded-full will-change-transform"
           style={{
             left: particle.x,
             top: particle.y,
             width: particle.size,
             height: particle.size,
             backgroundColor: particle.color,
-            boxShadow: `0 0 ${particle.size * 2}px ${particle.color}40`,
           }}
           animate={{
-            y: [particle.y, particle.y - 100, particle.y],
-            opacity: [0, 0.8, 0],
-            scale: [0, 1, 0],
+            y: [particle.y, particle.y - 80, particle.y],
+            opacity: [0, 0.6, 0],
           }}
           transition={{
-            duration: 8,
+            duration: 10,
             repeat: Infinity,
             delay: particle.delay,
             ease: "linear",
@@ -72,43 +88,19 @@ const ParticleSystem = () => {
   );
 };
 
-const FloatingElements = () => {
-  const gameIcons = ["🎮", "🏆", "⚡", "🎯", "👾", "🚀", "💎", "⭐"];
-
-  return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      {gameIcons.map((icon, index) => (
-        <motion.div
-          key={index}
-          className="absolute text-4xl opacity-20"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [-20, 20, -20],
-            rotate: [0, 360],
-            scale: [0.8, 1.2, 0.8],
-          }}
-          transition={{
-            duration: 10 + Math.random() * 10,
-            repeat: Infinity,
-            delay: index * 2,
-            ease: "easeInOut",
-          }}
-        >
-          {icon}
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-
+// Simplified GlowingOrbs with fewer orbs and less intensive blur
 const GlowingOrbs = () => {
-  const orbs = Array.from({ length: 5 }, (_, i) => ({
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  // Reduce from 5 to 3 orbs, smaller on mobile
+  const orbs = Array.from({ length: isMobile ? 2 : 3 }, (_, i) => ({
     id: i,
-    size: 200 + Math.random() * 300,
-    color: ["cyan", "purple", "pink", "blue", "green"][i % 5],
+    size: isMobile ? 150 : 250,
+    color: ["cyan", "purple", "pink"][i % 3],
   }));
 
   return (
@@ -116,7 +108,7 @@ const GlowingOrbs = () => {
       {orbs.map((orb) => (
         <motion.div
           key={orb.id}
-          className={`absolute rounded-full blur-3xl opacity-20`}
+          className="absolute rounded-full blur-2xl opacity-10"
           style={{
             width: orb.size,
             height: orb.size,
@@ -124,24 +116,20 @@ const GlowingOrbs = () => {
               orb.color === "cyan"
                 ? "#22d3ee"
                 : orb.color === "purple"
-                ? "#a855f7"
-                : orb.color === "pink"
-                ? "#ec4899"
-                : orb.color === "blue"
-                ? "#3b82f6"
-                : "#10b981"
-            }40, transparent)`,
+                  ? "#a855f7"
+                  : "#ec4899"
+            }30, transparent)`,
+            willChange: "transform",
           }}
           animate={{
             x: ["-10%", "110%"],
             y: ["110%", "-10%"],
-            scale: [0.8, 1.5, 0.8],
           }}
           transition={{
-            duration: 20 + orb.id * 5,
+            duration: 30 + orb.id * 10,
             repeat: Infinity,
             ease: "linear",
-            delay: orb.id * 4,
+            delay: orb.id * 5,
           }}
         />
       ))}
@@ -153,27 +141,18 @@ const AnimatedBackground = () => {
   return (
     <div className="fixed inset-0 overflow-hidden">
       <ParticleSystem />
-      <FloatingElements />
       <GlowingOrbs />
 
-      {/* Grid Animation */}
-      <div className="absolute inset-0 opacity-30">
-        <motion.div
+      {/* Static Grid - no animation for better performance */}
+      <div className="absolute inset-0 opacity-20">
+        <div
           className="w-full h-full"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(34, 211, 238, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(34, 211, 238, 0.08) 1px, transparent 1px)
             `,
             backgroundSize: "50px 50px",
-          }}
-          animate={{
-            backgroundPosition: ["0px 0px", "50px 50px"],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "linear",
           }}
         />
       </div>
