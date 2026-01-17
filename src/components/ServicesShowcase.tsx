@@ -13,7 +13,7 @@ import {
 
 const ServicesShowcase = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const services = [
     {
@@ -118,36 +118,29 @@ const ServicesShowcase = () => {
             <motion.div
               key={index}
               className="group relative"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.2 + 0.5, duration: 0.8 }}
-              whileHover={{ scale: 1.02, y: -10 }}
+              transition={{ delay: index * 0.15 + 0.3, duration: 0.6 }}
+              whileHover={{ scale: 1.02, y: -5 }}
             >
-              {/* Card Background with Gradient Border */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-200 opacity-0 group-hover:opacity-100" />
+              {/* Simplified Card Background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-full group-hover:border-white/20 transition-all duration-200">
                 {/* Service Icon & Image */}
                 <div className="flex items-center justify-between mb-6">
-                  <motion.div
-                    className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center`}
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
+                  <div
+                    className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 duration-300`}
                   >
                     <service.icon className="w-8 h-8 text-white" />
-                  </motion.div>
+                  </div>
                   <div className="text-4xl">{service.image}</div>
                 </div>
 
                 {/* Service Title */}
-                <motion.h3
-                  className="text-2xl font-bold text-white mb-2"
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : {}}
-                  transition={{ delay: index * 0.2 + 0.8 }}
-                >
+                <h3 className="text-2xl font-bold text-white mb-2">
                   {service.title}
-                </motion.h3>
+                </h3>
 
                 <motion.p
                   className={`text-sm bg-gradient-to-r ${service.color} bg-clip-text text-transparent font-semibold mb-4`}
