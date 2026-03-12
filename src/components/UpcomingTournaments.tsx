@@ -45,7 +45,7 @@ const UpcomingTournaments = () => {
       time: "10:00 NPT",
       prize: "15,000",
       seats: "Slots Available",
-      status: "open", // coming_soon, open, closed
+      status: "closed", // coming_soon, open, closed
       image: "/snbattlefield/poster.png",
       gameIcon: Target,
       learnMore: "/tournaments/snbattlefield",

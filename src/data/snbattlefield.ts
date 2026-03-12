@@ -64,7 +64,7 @@ export const snBattleFieldTournament: Tournament = {
       end: "2026-1-24",
     },
   },
-  status: "registration",
+  status: "finished",
   format: "Squad Elimination",
   maxTeams: 24,
   registeredTeams: Object.keys(snBattleFieldSlots).length,
