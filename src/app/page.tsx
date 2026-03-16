@@ -15,7 +15,7 @@ export default function HomePage() {
       <main className="relative z-10">
         <Hero />
         <ServicesShowcase />
-        <UpcomingTournaments />
+        {/* <UpcomingTournaments /> */}
         <LiveStreamingSection />
         <ContactUs />
       </main>

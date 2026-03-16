@@ -36,8 +36,9 @@ const Navigation = () => {
     {
       name: "Tournaments",
       icon: Trophy,
-      href: "#tournaments",
-      sectionId: "tournaments",
+      href: "https://tournament.streamnepal.stream",
+      sectionId: null,
+      externalUrl: "https://tournament.streamnepal.stream",
     },
     {
       name: "Streaming",
@@ -51,6 +52,12 @@ const Navigation = () => {
 
   // Handle navigation based on current page
   const handleNavClick = (item: (typeof navItems)[0]) => {
+    if (item.externalUrl) {
+      window.open(item.externalUrl, "_blank", "noopener,noreferrer");
+      setIsOpen(false);
+      return;
+    }
+
     if (isHomePage) {
       // If on home page, use smooth scroll to section
       if (item.sectionId) {
